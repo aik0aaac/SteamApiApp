@@ -67,7 +67,7 @@ import { Vue, Component } from 'vue-property-decorator'
 
 // components import
 import PageTemplate from '~/components/common/template/PageTemplate.vue'
-import AppIdRegistration from '~/components/common/AppIdRegistration'
+import AppIdRegistration from '~/components/common/AppIdRegistration.vue'
 
 import { pageSettings } from '~/config/pageSettings'
 

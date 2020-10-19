@@ -64,4 +64,8 @@ export default {
   build: {
     transpile: ['vuetify'],
   },
+  // Github Pagesデプロイ設定: デプロイ後の
+  router: {
+    base: '/SteamApiApp/',
+  },
 }
