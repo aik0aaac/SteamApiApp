@@ -13,12 +13,8 @@ export default class AppWatcherLocalStorage extends BaseLocalStorage {
   /**
    * 現在登録中のお気に入りアプリIDが存在するか&存在していればアプリIDを返却。
    */
-  public getAppId(): LocalStorageData {
-    const ret: LocalStorageData = {
-      isExist: this.isExistLocalStorageItem(this.appIdKeyName),
-      data: this.getLocalStorage(this.appIdKeyName),
-    }
-    return ret
+  public getAppId(): string | null {
+    return this.getLocalStorage(this.appIdKeyName)
   }
 
   /**

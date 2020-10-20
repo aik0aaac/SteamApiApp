@@ -65,15 +65,15 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 
+// Vuex-module import
+import { appWatcherModule } from '@/store/modules/appWatcher'
+
 // components import
 import PageTemplate from '~/components/common/template/PageTemplate.vue'
 import AppIdRegistration from '~/components/common/AppIdRegistration.vue'
 
+// settings import
 import { pageSettings } from '~/config/pageSettings'
-
-import { LocalStorageData } from '~/data/localStorage/types'
-import AppWatcherLocalStorage from '~/data/localStorage/appWatcher'
-const appWatcherLocalStorage = new AppWatcherLocalStorage()
 
 @Component({
   components: {
@@ -82,35 +82,31 @@ const appWatcherLocalStorage = new AppWatcherLocalStorage()
   },
 })
 export default class AppWatcher extends Vue {
-  // 画面設定
+  /**
+   * 画面設定。
+   */
   pageSetting = pageSettings.appWatcher
 
   /**
-   * アプリIDが登録状態かどうか。
+   *  登録中のアプリID。
    */
-  isRegisteredAppId = false
-
-  /**
-   * 登録中のアプリID。
-   */
-  appId: string | null = null
-
-  mounted() {
-    // 登録中のアプリID状態&データを取得
-    const { isExist, data } = appWatcherLocalStorage.getAppId()
-    if (isExist) {
-      this.isRegisteredAppId = isExist
-      this.appId = data
-    }
+  get appId() {
+    return appWatcherModule.appId
   }
 
-  private appIdRegistrationHandler(appId: string) {
-    // LocalStorageにセット
-    appWatcherLocalStorage.setAppId(appId)
+  /**
+   * アプリIDが登録されているかどうか。
+   */
+  get isRegisteredAppId() {
+    return appWatcherModule.isRegisteredAppId
+  }
 
-    // アプリIDにセット。
-    this.isRegisteredAppId = true
-    this.appId = appId
+  /**
+   * アプリID登録or更新ボタンのハンドラー。
+   */
+  private appIdRegistrationHandler(appId: string) {
+    // アプリIDをセット。
+    appWatcherModule.setAppId(appId)
   }
 }
 </script>
