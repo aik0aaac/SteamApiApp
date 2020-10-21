@@ -1,10 +1,12 @@
 <template>
   <page-template :page-setting="pageSetting">
     <template #main>
-      <!-- 登録中のアプリIDが存在しなければ、アプリID入力欄を提供 -->
+      <!-- 登録中のアプリIDが存在しない: アプリID入力欄を提供 -->
       <div v-if="!isRegisteredAppId">
         <app-id-registration :registration-handler="appIdRegistrationHandler" />
       </div>
+
+      <!-- 登録中のアプリID情報 -->
       <v-container v-if="isRegisteredAppId">
         <!-- お気に入りアプリの変更入力欄 -->
         <div>
@@ -12,33 +14,10 @@
         </div>
 
         <!-- お気に入りアプリ情報 -->
-        <div>
-          <div class="title">現在登録中のアプリ</div>
-          <v-card width="460px">
-            <v-img
-              contain
-              :src="`https://cdn.cloudflare.steamstatic.com/steam/apps/${appId}/header.jpg`"
-            />
-            <v-card-text>
-              <v-btn
-                block
-                color="primary"
-                :href="`https://store.steampowered.com/app/${appId}/`"
-                target="_blank"
-                ><v-icon x-small class="mr-2">fas fa-external-link-alt</v-icon
-                >ストアページへ</v-btn
-              >
-            </v-card-text>
-          </v-card>
-        </div>
+        <app-details :app-id="appId" />
 
         <!-- 現在プレイしている人数 -->
-        <div>
-          現在プレイしている人数 -
-          Steamに接続されている人しか取得不可(オフラインでやってる人は取得できない)という注意文を乗っける
-          -
-          アクティブユーザー数のUIは人のアイコンをたくさん並べて視覚的に分かりやすくしよう
-        </div>
+        <now-player-num />
 
         <!-- 最新ニュースリリース5件 -->
         <div>
@@ -63,14 +42,14 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Watch } from 'vue-property-decorator'
 
-// Vuex-module import
 import { appWatcherModule } from '@/store/modules/appWatcher'
 
-// components import
 import PageTemplate from '~/components/common/template/PageTemplate.vue'
 import AppIdRegistration from '~/components/common/AppIdRegistration.vue'
+import AppDetails from '~/components/common/AppDetails.vue'
+import NowPlayerNum from '~/components/appWatcher/NowPlayerNum.vue'
 
 // settings import
 import { pageSettings } from '~/config/pageSettings'
@@ -79,6 +58,7 @@ import { pageSettings } from '~/config/pageSettings'
   components: {
     PageTemplate,
     AppIdRegistration,
+    AppDetails,
   },
 })
 export default class AppWatcher extends Vue {

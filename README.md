@@ -2,7 +2,7 @@
 Steam APIを使用したアプリケーションです。
 `secret_key`や`access_token`を必要としないSteam APIのみを使って構築されています。
 
-## Build Setup
+# セットアップ
 
 ```bash
 # install dependencies
@@ -18,5 +18,3 @@ $ yarn start
 # generate static project
 $ yarn generate
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

@@ -10,7 +10,7 @@
             hint="お気に入りのSteamアプリのURLを入力してください"
             persistent-hint
             required
-          ></v-text-field>
+          />
         </v-col>
         <v-col cols="12" md="12">
           <v-btn color="primary" block @click="onclickHandler"> 登録 </v-btn>
@@ -26,6 +26,9 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 import RegexpUtil from '~/utils/regexpUtil'
 const regexpUtil = new RegexpUtil()
 
+/**
+ * SteamAppId登録。
+ */
 @Component({})
 export default class AppIdRegistration extends Vue {
   /**
@@ -53,7 +56,7 @@ export default class AppIdRegistration extends Vue {
    * sampleregistrationHandler(appId)の様に、第1引数に「appId」が格納される関数を指定。
    */
   @Prop({ default: () => ({}) })
-  public registrationHandler: Function = () => ({})
+  public registrationHandler!: Function
 
   /**
    * 登録ボタン押下時のハンドラー。
