@@ -17,9 +17,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Component from 'nuxt-class-component'
-
+import { Component, Vue, Watch } from 'nuxt-property-decorator'
 import ApiWrapper from '@/components/common/api/ApiWrapper.vue'
 
 import { appWatcherModule } from '@/store/modules/appWatcher'
@@ -38,6 +36,14 @@ export default class NowPlayerNum extends Vue {
    */
   get appId() {
     return appWatcherModule.appId
+  }
+
+  /**
+   * アプリIDがリロードされたら再度fetch実行
+   */
+  @Watch('appId')
+  onAppIdChanged() {
+    this.$fetch()
   }
 
   /**
