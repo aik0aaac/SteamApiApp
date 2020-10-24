@@ -8,13 +8,10 @@
 
       <!-- 登録中のアプリID情報 -->
       <v-container v-if="isRegisteredAppId">
-        <!-- お気に入りアプリの変更入力欄 -->
-        <div>
-          (目立たない様に折りたたんでおこう)& お気に入りアプリの削除機能も提供
-        </div>
-
         <!-- お気に入りアプリ情報 -->
         <app-details :app-id="appId" />
+        <!-- お気に入りアプリの変更入力欄 -->
+        <change-registered-app-id />
 
         <!-- 現在プレイしている人数 -->
         <now-player-num />
@@ -49,6 +46,7 @@ import { appWatcherModule } from '@/store/modules/appWatcher'
 import PageTemplate from '~/components/common/template/PageTemplate.vue'
 import AppIdRegistration from '~/components/common/AppIdRegistration.vue'
 import AppDetails from '~/components/common/AppDetails.vue'
+import ChangeRegisteredAppId from '~/components/appWatcher/ChangeRegisteredAppId.vue'
 import NowPlayerNum from '~/components/appWatcher/NowPlayerNum.vue'
 
 // settings import
@@ -59,6 +57,8 @@ import { pageSettings } from '~/config/pageSettings'
     PageTemplate,
     AppIdRegistration,
     AppDetails,
+    ChangeRegisteredAppId,
+    NowPlayerNum,
   },
 })
 export default class AppWatcher extends Vue {
