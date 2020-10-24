@@ -19,12 +19,10 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'nuxt-class-component'
-import axios from 'axios'
 
 import ApiWrapper from '@/components/common/api/ApiWrapper.vue'
 
 import { appWatcherModule } from '@/store/modules/appWatcher'
-import { IGetNumberOfCurrentPlayers } from '@/data/api/IResponse'
 
 /**
  * App情報の概要出力。
@@ -45,13 +43,10 @@ export default class NowPlayerNum extends Vue {
   /**
    * APIデータを格納。
    */
-  data: IGetNumberOfCurrentPlayers | null = null
+  data: any = null
 
   async fetch() {
-    const rawResponse = await axios.get(
-      `https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appId=${this.appId}`
-    )
-    this.data = rawResponse.data.response as IGetNumberOfCurrentPlayers
+    this.data = await appWatcherModule.getNumberOfCurrentPlayers()
   }
 }
 </script>

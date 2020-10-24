@@ -72,10 +72,10 @@ export default {
       ],
     },
   },
-  // Github Pagesデプロイ設定: デプロイ後の
-  router: {
-    base: '/SteamApiApp/',
-  },
   // vuex-module-decorators setting
   transpileDependencies: ['vuex-module-decorators'],
+
+  // serverMiddleware設定
+  // serverMiddleware: [{ path: '/api', handler: '~/serverMiddleware/api.js' }],
+  serverMiddleware: ['~/api'],
 }

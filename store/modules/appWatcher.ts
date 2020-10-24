@@ -1,8 +1,18 @@
-import { VuexModule, Module, getModule, Mutation } from 'vuex-module-decorators'
+import {
+  VuexModule,
+  Module,
+  getModule,
+  Mutation,
+  Action,
+} from 'vuex-module-decorators'
+import axios from 'axios'
 import store from '~/store/store'
 
-// LocalStorage import
+import ApiRequest from '~/data/api/apiRequest'
+
 import AppWatcherLocalStorage from '~/data/localStorage/appWatcher'
+
+const apiRequest = new ApiRequest(location.protocol, location.host, 'get')
 const appWatcherLocalStorage = new AppWatcherLocalStorage()
 
 export interface IAppWatcherState {
@@ -33,12 +43,28 @@ class AppWatcherModule extends VuexModule implements IAppWatcherState {
     return this._appId !== null
   }
 
+  /**
+   * アプリIDをセット。
+   * @param appId アプリID。
+   */
   @Mutation
-  public setAppId(data: string) {
-    this._appId = data
+  public setAppId(appId: string) {
+    this._appId = appId
 
     // LocalStorage情のデータを更新
-    appWatcherLocalStorage.setAppId(data)
+    appWatcherLocalStorage.setAppId(appId)
+  }
+
+  /**
+   * 指定したアプリのプレイヤー数を取得。
+   */
+  @Action({})
+  public async getNumberOfCurrentPlayers() {
+    const rawResponse = await axios.get(
+      apiRequest.getRequestViaBff +
+      apiRequest.getNumberOfCurrentPlayers(this._appId as string)
+    )
+    return rawResponse.data
   }
 }
 
