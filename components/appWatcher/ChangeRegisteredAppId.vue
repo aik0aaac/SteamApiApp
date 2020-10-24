@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" width="500">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn color="primary" dark v-bind="attrs" v-on="on">
+      <v-btn color="primary" dark v-bind="attrs" block outlined v-on="on">
         登録中のアプリを変更
       </v-btn>
     </template>
@@ -43,6 +43,6 @@ export default class ChangeRegisteredAppId extends Vue {
   /**
    * ダイアログ開閉状態。
    */
-  dialog = false
+  private dialog = false
 }
 </script>

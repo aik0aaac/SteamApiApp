@@ -24,7 +24,10 @@ app.use('/api/get', async (req: Request, res: Response) => {
   const apiUrl = req.query.apiUrl
 
   // Steam APIでないとリクエストは送付せずエラーにする
-  if (!regexpUtil.test(apiUrl as string, regexpUtil.steamApiUrl)) {
+  if (
+    !regexpUtil.test(apiUrl as string, regexpUtil.steamApiUrl) &&
+    !regexpUtil.test(apiUrl as string, regexpUtil.steamApiReviewUrl)
+  ) {
     console.log(
       `Steam APIではないAPIが指定されました。
 APIURL=${apiUrl}
@@ -38,9 +41,10 @@ APIURL=${apiUrl}
     url: apiUrl,
     json: true,
   }
+
   // eslint-disable-next-line handle-callback-err
   request(options, (error, response, body) => {
-    res.send(body.response)
+    res.send(body)
   })
 })
 

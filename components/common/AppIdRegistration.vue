@@ -34,16 +34,16 @@ export default class AppIdRegistration extends Vue {
   /**
    * フォームバリデーション状態。
    */
-  formValid = false
+  private formValid = false
 
   /**
    * 入力されるAppURL。
    */
-  appUrl = ''
+  private appUrl = ''
   /**
    * 入力AppURLのバリデーションルール。
    */
-  appUrlRules = [
+  private appUrlRules = [
     (v: string | undefined | null) =>
       !!v || 'お気に入りのSteamアプリのURLを入力してください',
     (v: string) =>
