@@ -18,15 +18,38 @@ export default class ApiRequest {
    * Nuxt.jsのServerMiddlewareのパスを生成。
    */
   public getRequestViaBff = ''
+
   /**
    * SteamAPIのベースとなるURL。
    */
-  private steamApiBaseUrl = 'https://api.steampowered.com/'
+  private steamApiBaseUrl = 'https://api.steampowered.com'
+
   /**
-   * 指定したアプリのプレイヤー数を返却するAPIURL。
+   * SteamAPIのベースとなるURL。
+   */
+  private steamApiReviewUrl = 'https://store.steampowered.com'
+
+  /**
+   * 指定したアプリのプレイヤー数を取得するAPIURL。
    * @param appId アプリID。
    */
   public getNumberOfCurrentPlayers(appId: string): string {
     return `${this.steamApiBaseUrl}/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appId=${appId}`
+  }
+
+  /**
+   * 指定したアプリの実績取得比率を取得するAPIURL。
+   * @param appId アプリID。
+   */
+  public getGlobalAchievementPercentagesForApp(appId: string): string {
+    return `${this.steamApiBaseUrl}/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v2/?gameid=${appId}`
+  }
+
+  /**
+   * 指定したアプリのレビューヒストグラムを取得するAPIURL。
+   * @param appId アプリID。
+   */
+  public getReviewHistogram(appId: string): string {
+    return `${this.steamApiReviewUrl}/appreviewhistogram/${appId}`
   }
 }

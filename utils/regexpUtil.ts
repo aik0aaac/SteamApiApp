@@ -27,4 +27,9 @@ export default class RegexpUtil {
    * SteamApiの正規表現パターン。
    */
   public steamApiUrl: RegExp = /^https:\/\/api.steampowered.com.*/
+
+  /**
+   * SteamApi(Review)の正規表現パターン。
+   */
+  public steamApiReviewUrl: RegExp = /^https:\/\/store.steampowered.com.*/
 }

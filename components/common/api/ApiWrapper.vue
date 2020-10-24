@@ -13,7 +13,9 @@
     <div v-else>
       <slot name="data"></slot>
     </div>
-    最終更新: {{ apiLastUpdateDate }}
+    <div class="mt-4 grey--text text--darken-2">
+      情報最終更新: {{ apiLastUpdateDate }}
+    </div>
   </div>
 </template>
 
@@ -24,9 +26,6 @@ import { Prop } from 'vue-property-decorator'
 
 import ApiLoading from '@/components/common/api/ApiLoading.vue'
 import ApiError from '@/components/common/api/ApiError.vue'
-
-import TimestampUtil from '@/utils/timestampUtil'
-const timestampUtil = new TimestampUtil()
 
 /**
  * App情報の概要出力。
@@ -47,8 +46,12 @@ export default class ApiWrapper extends Vue {
   /**
    * API最終更新日時。
    */
-  get apiLastUpdateDate() {
-    return timestampUtil.convertToDateTime(this.fetchState.timestamp)
+  private get apiLastUpdateDate() {
+    const dateTime = new Date(this.fetchState.timestamp)
+    return `
+      ${dateTime.toLocaleDateString('ja-JP')} 
+      ${dateTime.toLocaleTimeString('ja-JP')}
+    `
   }
 }
 </script>

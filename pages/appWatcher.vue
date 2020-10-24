@@ -7,32 +7,52 @@
       </div>
 
       <!-- 登録中のアプリID情報 -->
-      <v-container v-if="isRegisteredAppId">
-        <!-- お気に入りアプリ情報 -->
-        <app-details :app-id="appId" />
-        <!-- お気に入りアプリの変更入力欄 -->
-        <change-registered-app-id />
+      <!-- アプリIDが変更されたら再ロードされるようにKeyを設定 -->
+      <v-container v-if="isRegisteredAppId" :key="appId">
+        <v-row>
+          <!-- お気に入りアプリ情報 -->
+          <v-col cols="12" sm="8" class="pt-0">
+            <app-details :app-id="appId">
+              <template #addCardActions>
+                <!-- お気に入りアプリの変更入力欄 -->
+                <change-registered-app-id />
+              </template>
+            </app-details>
+          </v-col>
 
-        <!-- 現在プレイしている人数 -->
-        <now-player-num />
-
-        <!-- 最新ニュースリリース5件 -->
-        <div>
-          - ニュースリリース: - 表示内容@一覧: - ニュースタイトル -
-          ニュースの本文(500文字程度) - ニュースへのリンク -
-          指定されたURLが外部サイトであればアイコン表示 -
-          ニュース本文(先頭30文字程度でトリミング) - ニュース投稿日 -
-          「最新のニュース5件」カード型で表示 -
-          もっと見たい場合→NewsWatcherへ誘導リンクをつける
-        </div>
-
-        <!-- 実績取得比率 -->
-        <div>
-          - 実績取得比率 - SteamDBへのアクセスURLも一緒に表示 - 実績名、%を表示
-        </div>
+          <!-- 現在プレイしている人数 -->
+          <v-col cols="12" sm="4" class="pt-0">
+            <now-player-num />
+          </v-col>
+        </v-row>
 
         <!-- レビューヒストグラム -->
-        <div>- レビューヒストグラム - グラフ化して表示</div>
+        <v-row>
+          <v-col cols="12" sm="12" class="pt-0">
+            <review-histogram />
+          </v-col>
+        </v-row>
+
+        <!-- 最新ニュースリリース5件 -->
+        <v-row>
+          <v-col cols="12" class="pt-0">
+            <div>
+              - ニュースリリース: - 表示内容@一覧: - ニュースタイトル -
+              ニュースの本文(500文字程度) - ニュースへのリンク -
+              指定されたURLが外部サイトであればアイコン表示 -
+              ニュース本文(先頭30文字程度でトリミング) - ニュース投稿日 -
+              「最新のニュース5件」カード型で表示 -
+              もっと見たい場合→NewsWatcherへ誘導リンクをつける
+            </div>
+          </v-col>
+        </v-row>
+
+        <!-- 実績取得比率 -->
+        <v-row>
+          <v-col cols="12" class="pt-0">
+            <achivement-summary />
+          </v-col>
+        </v-row>
       </v-container>
     </template>
   </page-template>
@@ -48,6 +68,8 @@ import AppIdRegistration from '~/components/common/AppIdRegistration.vue'
 import AppDetails from '~/components/common/AppDetails.vue'
 import ChangeRegisteredAppId from '~/components/appWatcher/ChangeRegisteredAppId.vue'
 import NowPlayerNum from '~/components/appWatcher/NowPlayerNum.vue'
+import AchivementSummary from '~/components/appWatcher/AchivementSummary.vue'
+import ReviewHistogram from '~/components/appWatcher/ReviewHistogram.vue'
 
 // settings import
 import { pageSettings } from '~/config/pageSettings'
@@ -59,25 +81,27 @@ import { pageSettings } from '~/config/pageSettings'
     AppDetails,
     ChangeRegisteredAppId,
     NowPlayerNum,
+    AchivementSummary,
+    ReviewHistogram,
   },
 })
 export default class AppWatcher extends Vue {
   /**
    * 画面設定。
    */
-  pageSetting = pageSettings.appWatcher
+  private pageSetting = pageSettings.appWatcher
 
   /**
    *  登録中のアプリID。
    */
-  get appId() {
+  private get appId() {
     return appWatcherModule.appId
   }
 
   /**
    * アプリIDが登録されているかどうか。
    */
-  get isRegisteredAppId() {
+  private get isRegisteredAppId() {
     return appWatcherModule.isRegisteredAppId
   }
 

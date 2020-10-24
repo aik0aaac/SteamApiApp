@@ -18,6 +18,6 @@ import { pageSettings } from '~/config/pageSettings'
 })
 export default class AppWatcher extends Vue {
   // 画面設定
-  pageSetting = pageSettings.home
+  private pageSetting = pageSettings.home
 }
 </script>

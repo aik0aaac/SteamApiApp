@@ -64,6 +64,30 @@ class AppWatcherModule extends VuexModule implements IAppWatcherState {
       apiRequest.getRequestViaBff +
       apiRequest.getNumberOfCurrentPlayers(this._appId as string)
     )
+    return rawResponse.data.response
+  }
+
+  /**
+   * 指定したアプリの実績取得比率を取得。
+   */
+  @Action({})
+  public async getGlobalAchievementPercentagesForApp() {
+    const rawResponse = await axios.get(
+      apiRequest.getRequestViaBff +
+      apiRequest.getGlobalAchievementPercentagesForApp(this._appId as string)
+    )
+    return rawResponse.data
+  }
+
+  /**
+   * 指定したアプリのレビューヒストグラムを取得。
+   */
+  @Action({})
+  public async getReviewHistogram() {
+    const rawResponse = await axios.get(
+      apiRequest.getRequestViaBff +
+      apiRequest.getReviewHistogram(this._appId as string)
+    )
     return rawResponse.data
   }
 }
