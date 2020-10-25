@@ -38,11 +38,11 @@ export default class ApiRequest {
   }
 
   /**
-   * 指定したアプリの実績取得比率を取得するAPIURL。
+   * 指定したアプリのニュースリリースを取得するAPIURL。
    * @param appId アプリID。
    */
-  public getGlobalAchievementPercentagesForApp(appId: string): string {
-    return `${this.steamApiBaseUrl}/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v2/?gameid=${appId}`
+  public getNewsForApp(appId: string): string {
+    return `${this.steamApiBaseUrl}/ISteamNews/GetNewsForApp/v2/?appid=${appId}`
   }
 
   /**
@@ -51,5 +51,13 @@ export default class ApiRequest {
    */
   public getReviewHistogram(appId: string): string {
     return `${this.steamApiReviewUrl}/appreviewhistogram/${appId}`
+  }
+
+  /**
+   * 指定したアプリの実績取得比率を取得するAPIURL。
+   * @param appId アプリID。
+   */
+  public getGlobalAchievementPercentagesForApp(appId: string): string {
+    return `${this.steamApiBaseUrl}/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v2/?gameid=${appId}`
   }
 }

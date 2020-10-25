@@ -5,8 +5,9 @@
       <!-- データ取得中 -->
       <api-wrapper :fetch-state="$fetchState">
         <template #data>
-          {{ startDate }}
-          {{ endDate }}
+          <div class="caption">
+            {{ startDate }}〜 {{ endDate }}までの評価数推移
+          </div>
           <chart-bar
             :chart-data="chartData"
             :options="chartOption"
@@ -57,6 +58,9 @@ export default class ReviewHistogram extends Vue {
    */
   private endDate = ''
 
+  /**
+   * 指定したTimeStampを日付に変更。
+   */
   private convertTimestampToDate(timestamp: number) {
     const dateTime = new Date(timestamp * 1000)
     return `${dateTime.toLocaleDateString('ja-JP')}`
@@ -102,7 +106,6 @@ export default class ReviewHistogram extends Vue {
     }
     chartData.datasets?.push(recommendationsUpData)
     chartData.datasets?.push(recommendationsDownData)
-    console.log(chartData)
 
     return chartData
   }
@@ -133,6 +136,17 @@ export default class ReviewHistogram extends Vue {
     responsive: true,
     // アスペクト比を固定しないように変更
     maintainAspectRatio: false,
+    scales: {
+      yAxes: [
+        {
+          // Y軸のラベル設定
+          scaleLabel: {
+            display: true,
+            labelString: '評価数',
+          },
+        },
+      ],
+    },
   }
 
   /**

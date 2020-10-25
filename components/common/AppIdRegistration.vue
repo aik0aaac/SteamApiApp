@@ -24,7 +24,6 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
 import RegexpUtil from '~/utils/regexpUtil'
-const regexpUtil = new RegexpUtil()
 
 /**
  * SteamAppId登録。
@@ -47,7 +46,7 @@ export default class AppIdRegistration extends Vue {
     (v: string | undefined | null) =>
       !!v || 'お気に入りのSteamアプリのURLを入力してください',
     (v: string) =>
-      regexpUtil.steamUrlToAppId.test(v) ||
+      RegexpUtil.steamUrlToAppId.test(v) ||
       'SteamアプリのURLを入力してください',
   ]
 
@@ -62,7 +61,7 @@ export default class AppIdRegistration extends Vue {
    * 登録ボタン押下時のハンドラー。
    */
   private onclickHandler() {
-    const appId = regexpUtil.match(this.appUrl, regexpUtil.steamUrlToAppId)
+    const appId = RegexpUtil.match(this.appUrl, RegexpUtil.steamUrlToAppId)
     this.registrationHandler(appId)
   }
 }

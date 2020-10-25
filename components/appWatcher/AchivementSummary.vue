@@ -1,46 +1,41 @@
 <template>
   <v-card>
     <v-card-title class="title">実績取得比率</v-card-title>
+    <v-card-subtitle class="caption">
+      このアプリの実績の全ユーザー取得比率が見れます。<br />
+      実績IDがどの実績を指すかについては
+      <a :href="steamDbUrl" target="_blank" class="text-decoration-none"
+        ><v-icon x-small class="mx-1">fas fa-external-link-alt</v-icon>
+        SteamDB
+      </a>
+      を参照してください。
+    </v-card-subtitle>
     <v-card-text>
       <!-- データ取得中 -->
       <api-wrapper :fetch-state="$fetchState">
         <template #data>
-          <!-- 実績が存在しない場合 -->
-          <div v-if="isNoAchivementApp">
-            <div class="body-2">このアプリには実績がありません。</div>
-          </div>
-          <div v-else>
-            <v-data-table
-              :headers="headers"
-              :items="data.achievementpercentages.achievements"
-              :items-per-page="10"
-              :search="search"
-              class="elevation-1"
-              :footer-props="footerProps"
-            >
-              <template v-slot:top>
-                <v-container>
-                  <div class="caption">
-                    実績IDがどの実績を指すかについては<a
-                      :href="steamDbUrl"
-                      target="_blank"
-                      class="text-decoration-none"
-                      ><v-icon x-small class="mx-1"
-                        >fas fa-external-link-alt</v-icon
-                      >SteamDB</a
-                    >を参照してください。
-                  </div>
-                  <v-text-field
-                    v-model="search"
-                    append-icon="mdi-magnify"
-                    label="検索"
-                    hint="実績ID、比率で計算できます"
-                    persistent-hint
-                  />
-                </v-container>
-              </template>
-            </v-data-table>
-          </div>
+          <v-data-table
+            :headers="headers"
+            :items="data"
+            :items-per-page="10"
+            :search="search"
+            class="elevation-1"
+            :footer-props="footerProps"
+            no-data-text="このアプリには実績がありません。"
+            no-results-text="該当する実績はありません。"
+          >
+            <template v-slot:top>
+              <v-container>
+                <v-text-field
+                  v-model="search"
+                  append-icon="mdi-magnify"
+                  label="検索"
+                  hint="実績ID、比率で計算できます"
+                  persistent-hint
+                />
+              </v-container>
+            </template>
+          </v-data-table>
         </template>
       </api-wrapper>
     </v-card-text>
@@ -52,6 +47,7 @@ import { Component, Vue, Watch } from 'nuxt-property-decorator'
 import ApiWrapper from '@/components/common/api/ApiWrapper.vue'
 
 import { appWatcherModule } from '@/store/modules/appWatcher'
+import MathUtil from '@/utils/mathUtil'
 
 /**
  * App情報の概要出力。
@@ -72,13 +68,7 @@ export default class AchivementSummary extends Vue {
   /**
    * APIデータを格納。
    */
-  private data: any = null
-
-  /**
-   * 実績が存在しないアプリかどうか。
-   * APIの返却値が`undefined`であれば「実績が存在しないアプリ」として判定する。
-   */
-  private isNoAchivementApp: boolean = true
+  private data: any = []
 
   /**
    * DataTableのヘッダー。
@@ -89,7 +79,7 @@ export default class AchivementSummary extends Vue {
       value: 'name',
     },
     {
-      text: '取得比率',
+      text: '取得比率(%)',
       value: 'percent',
     },
   ]
@@ -132,10 +122,19 @@ export default class AchivementSummary extends Vue {
 
   async fetch() {
     const response = await appWatcherModule.getGlobalAchievementPercentagesForApp()
+
+    // データが存在=実績データが存在するゲームであすれば格納
     if (Object.keys(response).length !== 0) {
-      this.isNoAchivementApp = false
-      this.data = response
-      console.log(this.isNoAchivementApp)
+      this.data = response.achievementpercentages.achievements
+
+      // 取得比率のデータを四捨五入しておく
+      this.data = this.data.map((e: any) => {
+        const tmp = {
+          name: e.name,
+          percent: MathUtil.orgRound(e.percent as number, 1000),
+        }
+        return tmp
+      })
     }
   }
 }

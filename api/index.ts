@@ -6,7 +6,7 @@ import bodyParser from 'body-parser'
 import request from 'request'
 
 import RegexpUtil from '../utils/regexpUtil'
-const regexpUtil = new RegexpUtil()
+import Settings from '../config/settings'
 
 const app = express()
 
@@ -21,12 +21,12 @@ const app = express()
  */
 app.use('/api/get', async (req: Request, res: Response) => {
   // API URLを取得
-  const apiUrl = req.query.apiUrl
+  let apiUrl = req.query.apiUrl as string
 
   // Steam APIでないとリクエストは送付せずエラーにする
   if (
-    !regexpUtil.test(apiUrl as string, regexpUtil.steamApiUrl) &&
-    !regexpUtil.test(apiUrl as string, regexpUtil.steamApiReviewUrl)
+    !RegexpUtil.test(apiUrl as string, RegexpUtil.steamApiUrl) &&
+    !RegexpUtil.test(apiUrl as string, RegexpUtil.steamApiReviewUrl)
   ) {
     console.log(
       `Steam APIではないAPIが指定されました。
@@ -35,6 +35,13 @@ APIURL=${apiUrl}
     )
     res.end()
   }
+
+  // GETパラメータエスケープ用文字列をConvert
+  const getRequestParameterReplacePattern = new RegExp(
+    '\\' + Settings.getRequestParameterReplaceStr,
+    'g'
+  )
+  apiUrl = apiUrl.replace(getRequestParameterReplacePattern, '&')
 
   const options = {
     method: 'GET',

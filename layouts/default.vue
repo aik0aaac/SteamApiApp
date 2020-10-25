@@ -43,7 +43,7 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 
-import { appTitle } from '~/config/appTitle'
+import Settings from '~/config/settings'
 import { pageSettings } from '~/config/pageSettings'
 
 @Component
@@ -51,6 +51,6 @@ export default class DefaultTemplate extends Vue {
   drawer = false
   items = pageSettings
   miniVariant = false
-  title = appTitle
+  title = Settings.appTitle
 }
 </script>

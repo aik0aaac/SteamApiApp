@@ -11,6 +11,7 @@ import store from '~/store/store'
 import ApiRequest from '~/data/api/apiRequest'
 
 import AppWatcherLocalStorage from '~/data/localStorage/appWatcher'
+import Settings from '~/config/settings'
 
 const apiRequest = new ApiRequest(location.protocol, location.host, 'get')
 const appWatcherLocalStorage = new AppWatcherLocalStorage()
@@ -51,8 +52,18 @@ class AppWatcherModule extends VuexModule implements IAppWatcherState {
   public setAppId(appId: string) {
     this._appId = appId
 
-    // LocalStorage情のデータを更新
+    // LocalStorage上のデータを更新
     appWatcherLocalStorage.setAppId(appId)
+  }
+
+  /**
+   * アプリIDを消去。
+   */
+  @Mutation
+  public clearAppId() {
+    this._appId = null
+    // LocalStorage上のデータを更新
+    appWatcherLocalStorage.clearAppId()
   }
 
   /**
@@ -68,13 +79,19 @@ class AppWatcherModule extends VuexModule implements IAppWatcherState {
   }
 
   /**
-   * 指定したアプリの実績取得比率を取得。
+   * 指定したアプリの最新ニュースを5件取得。
    */
   @Action({})
-  public async getGlobalAchievementPercentagesForApp() {
+  public async getNewsForApp() {
+    const option =
+      Settings.getRequestParameterReplaceStr +
+      'maxlength=100' +
+      Settings.getRequestParameterReplaceStr +
+      'count=5'
     const rawResponse = await axios.get(
       apiRequest.getRequestViaBff +
-      apiRequest.getGlobalAchievementPercentagesForApp(this._appId as string)
+      apiRequest.getNewsForApp(this._appId as string) +
+      option
     )
     return rawResponse.data
   }
@@ -87,6 +104,18 @@ class AppWatcherModule extends VuexModule implements IAppWatcherState {
     const rawResponse = await axios.get(
       apiRequest.getRequestViaBff +
       apiRequest.getReviewHistogram(this._appId as string)
+    )
+    return rawResponse.data
+  }
+
+  /**
+   * 指定したアプリの実績取得比率を取得。
+   */
+  @Action({})
+  public async getGlobalAchievementPercentagesForApp() {
+    const rawResponse = await axios.get(
+      apiRequest.getRequestViaBff +
+      apiRequest.getGlobalAchievementPercentagesForApp(this._appId as string)
     )
     return rawResponse.data
   }

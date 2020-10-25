@@ -26,6 +26,13 @@
           </v-col>
         </v-row>
 
+        <!-- 最新ニュースリリース5件 -->
+        <v-row>
+          <v-col cols="12" class="pt-0">
+            <news-summary />
+          </v-col>
+        </v-row>
+
         <!-- レビューヒストグラム -->
         <v-row>
           <v-col cols="12" sm="12" class="pt-0">
@@ -33,24 +40,17 @@
           </v-col>
         </v-row>
 
-        <!-- 最新ニュースリリース5件 -->
-        <v-row>
-          <v-col cols="12" class="pt-0">
-            <div>
-              - ニュースリリース: - 表示内容@一覧: - ニュースタイトル -
-              ニュースの本文(500文字程度) - ニュースへのリンク -
-              指定されたURLが外部サイトであればアイコン表示 -
-              ニュース本文(先頭30文字程度でトリミング) - ニュース投稿日 -
-              「最新のニュース5件」カード型で表示 -
-              もっと見たい場合→NewsWatcherへ誘導リンクをつける
-            </div>
-          </v-col>
-        </v-row>
-
         <!-- 実績取得比率 -->
         <v-row>
           <v-col cols="12" class="pt-0">
             <achivement-summary />
+          </v-col>
+        </v-row>
+
+        <!-- 登録中のアプリID削除ボタン -->
+        <v-row>
+          <v-col cols="12" class="pt-0">
+            <clear-registered-app-id />
           </v-col>
         </v-row>
       </v-container>
@@ -68,8 +68,10 @@ import AppIdRegistration from '~/components/common/AppIdRegistration.vue'
 import AppDetails from '~/components/common/AppDetails.vue'
 import ChangeRegisteredAppId from '~/components/appWatcher/ChangeRegisteredAppId.vue'
 import NowPlayerNum from '~/components/appWatcher/NowPlayerNum.vue'
-import AchivementSummary from '~/components/appWatcher/AchivementSummary.vue'
+import NewsSummary from '~/components/appWatcher/NewsSummary.vue'
 import ReviewHistogram from '~/components/appWatcher/ReviewHistogram.vue'
+import AchivementSummary from '~/components/appWatcher/AchivementSummary.vue'
+import ClearRegisteredAppId from '~/components/appWatcher/ClearRegisteredAppId.vue'
 
 // settings import
 import { pageSettings } from '~/config/pageSettings'
@@ -81,8 +83,10 @@ import { pageSettings } from '~/config/pageSettings'
     AppDetails,
     ChangeRegisteredAppId,
     NowPlayerNum,
-    AchivementSummary,
+    NewsSummary,
     ReviewHistogram,
+    AchivementSummary,
+    ClearRegisteredAppId,
   },
 })
 export default class AppWatcher extends Vue {
