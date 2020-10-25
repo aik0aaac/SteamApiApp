@@ -20,6 +20,14 @@ export default class BaseLocalStorage {
   }
 
   /**
+   * 指定したKeyのLocalStorageアイテムを消去します。
+   * @param key 指定アイテムのキー名。
+   */
+  protected clearLocalStorage(key: string): void {
+    localStorage.removeItem(key)
+  }
+
+  /**
    * 指定したキー名のLocalStorageアイテムが存在するかをチェックします。
    * @param key アイテムのキー名。
    */

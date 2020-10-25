@@ -5,7 +5,7 @@ export default class RegexpUtil {
    * @param str 指定文字列。
    * @param regexp 指定正規表現パターン。
    */
-  public match(str: string, regexp: RegExp): string {
+  public static match(str: string, regexp: RegExp): string {
     return (str.match(regexp) as Array<string>)[1]
   }
 
@@ -14,22 +14,27 @@ export default class RegexpUtil {
    * @param str 指定文字列。
    * @param regexp 指定正規表現パターン。
    */
-  public test(str: string, regexp: RegExp): boolean {
+  public static test(str: string, regexp: RegExp): boolean {
     return regexp.test(str)
   }
 
   /**
    * SteamURLからAppIdを抽出する正規表現パターン。
    */
-  public steamUrlToAppId: RegExp = /https:\/\/store.steampowered.com\/app\/([0-9]+)\//
+  public static steamUrlToAppId: RegExp = /https:\/\/store.steampowered.com\/app\/([0-9]+)\//
+
+  /**
+   * SteamAppIの正規表現パターン。
+   */
+  public static steamAppId: RegExp = /^[0-9]+$/
 
   /**
    * SteamApiの正規表現パターン。
    */
-  public steamApiUrl: RegExp = /^https:\/\/api.steampowered.com.*/
+  public static steamApiUrl: RegExp = /^https:\/\/api.steampowered.com.*/
 
   /**
    * SteamApi(Review)の正規表現パターン。
    */
-  public steamApiReviewUrl: RegExp = /^https:\/\/store.steampowered.com.*/
+  public static steamApiReviewUrl: RegExp = /^https:\/\/store.steampowered.com.*/
 }
