@@ -25,7 +25,8 @@ import ApiWrapper from '@/components/common/api/ApiWrapper.vue'
 import ChartBar from '@/components/common/chart/ChartBar.vue'
 import { ChartData, ChartOptions } from 'chart.js'
 
-import { appWatcherModule } from '@/store/modules/appWatcher'
+import { appWatcherModule } from '@/store/modules/appWatcherModule'
+import { dataModule } from '@/store/modules/dataModule'
 
 /**
  * レビューヒストグラム。
@@ -37,13 +38,6 @@ import { appWatcherModule } from '@/store/modules/appWatcher'
   },
 })
 export default class ReviewHistogram extends Vue {
-  /**
-   *  登録中のアプリID。
-   */
-  private get appId() {
-    return appWatcherModule.appId
-  }
-
   /**
    * APIデータを格納。
    */
@@ -67,7 +61,9 @@ export default class ReviewHistogram extends Vue {
   }
 
   async fetch() {
-    this.data = await appWatcherModule.getReviewHistogram()
+    this.data = await appWatcherModule.getReviewHistogram(
+      dataModule.currentAppId.appId
+    )
 
     // レビュー計測開始日時を取得
     this.startDate = this.convertTimestampToDate(this.data.results.start_date)

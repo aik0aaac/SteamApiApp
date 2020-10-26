@@ -17,7 +17,7 @@ export interface PageSetting {
   /**
    * パンくずリスト情報。
    */
-  breadcrumbs: Array<Breadcrumbs>
+  // breadcrumbs: Array<Breadcrumbs>
   /**
    * ナビゲーションverに表示されるアイコン。
    */

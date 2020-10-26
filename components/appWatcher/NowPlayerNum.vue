@@ -22,7 +22,8 @@
 import { Component, Vue, Watch } from 'nuxt-property-decorator'
 import ApiWrapper from '@/components/common/api/ApiWrapper.vue'
 
-import { appWatcherModule } from '@/store/modules/appWatcher'
+import { dataModule } from '@/store/modules/dataModule'
+import { appWatcherModule } from '@/store/modules/appWatcherModule'
 
 /**
  * 現在プレイ中の人数。
@@ -34,19 +35,14 @@ import { appWatcherModule } from '@/store/modules/appWatcher'
 })
 export default class NowPlayerNum extends Vue {
   /**
-   *  登録中のアプリID。
-   */
-  private get appId() {
-    return appWatcherModule.appId
-  }
-
-  /**
    * APIデータを格納。
    */
   private data: any = null
 
   async fetch() {
-    this.data = await appWatcherModule.getNumberOfCurrentPlayers()
+    this.data = await appWatcherModule.getNumberOfCurrentPlayers(
+      dataModule.currentAppId.appId
+    )
   }
 }
 </script>

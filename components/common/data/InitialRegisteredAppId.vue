@@ -21,20 +21,27 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
+import Vue from 'vue'
+import Component from 'nuxt-class-component'
+
+import { dataModule } from '@/store/modules/dataModule'
+
+import { IAppId } from '~/store/modules/dataModule/types'
+import Settings from '~/config/settings'
 
 import RegexpUtil from '~/utils/regexpUtil'
 
 /**
- * SteamAppId登録。
+ * アプリID初期登録。
  */
-@Component({})
-export default class AppIdRegistration extends Vue {
+@Component({
+  components: {},
+})
+export default class InitialRegisteredAppId extends Vue {
   /**
    * フォームバリデーション状態。
    */
   private formValid = false
-
   /**
    * 入力されるAppURL。
    */
@@ -51,18 +58,14 @@ export default class AppIdRegistration extends Vue {
   ]
 
   /**
-   * アプリIDを登録する関数。
-   * sampleregistrationHandler(appId)の様に、第1引数に「appId」が格納される関数を指定。
-   */
-  @Prop({ default: () => ({}) })
-  public registrationHandler!: Function
-
-  /**
    * 登録ボタン押下時のハンドラー。
    */
   private onclickHandler() {
-    const appId = RegexpUtil.match(this.appUrl, RegexpUtil.steamUrlToAppId)
-    this.registrationHandler(appId)
+    const data: IAppId = {
+      appId: RegexpUtil.match(this.appUrl, RegexpUtil.steamUrlToAppId),
+      label: Settings.appIdInitializeLabel,
+    }
+    dataModule.setAppId(data)
   }
 }
 </script>

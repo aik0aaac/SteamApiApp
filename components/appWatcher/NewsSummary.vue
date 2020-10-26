@@ -103,7 +103,8 @@
 import { Component, Vue, Watch } from 'nuxt-property-decorator'
 import ApiWrapper from '@/components/common/api/ApiWrapper.vue'
 
-import { appWatcherModule } from '@/store/modules/appWatcher'
+import { appWatcherModule } from '@/store/modules/appWatcherModule'
+import { dataModule } from '@/store/modules/dataModule'
 import MathUtil from '@/utils/mathUtil'
 import DateTimeUtil from '@/utils/dateTimeUtil'
 import Settings from '@/config/settings'
@@ -117,13 +118,6 @@ import Settings from '@/config/settings'
   },
 })
 export default class NewsSummary extends Vue {
-  /**
-   *  登録中のアプリID。
-   */
-  private get appId() {
-    return appWatcherModule.appId
-  }
-
   /**
    * APIデータを格納。
    */
@@ -145,7 +139,9 @@ export default class NewsSummary extends Vue {
   private newsSummaryDisplayContentsNum = Settings.newsSummaryDisplayContentsNum
 
   async fetch() {
-    const response = await appWatcherModule.getNewsForApp()
+    const response = await appWatcherModule.getNewsForApp(
+      dataModule.currentAppId.appId
+    )
 
     this.data = response.appnews.newsitems
     this.newsCount = response.appnews.count
