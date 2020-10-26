@@ -85,7 +85,6 @@ class AppWatcherModule extends VuexModule implements IAppWatcherState {
   public async getNewsForApp() {
     const option =
       Settings.getRequestParameterReplaceStr +
-      'maxlength=100' +
       Settings.getRequestParameterReplaceStr +
       'count=5'
     const rawResponse = await axios.get(

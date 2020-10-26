@@ -31,7 +31,7 @@ import { appWatcherModule } from '@/store/modules/appWatcher'
 import AppIdRegistration from '~/components/common/AppIdRegistration.vue'
 
 /**
- * 登録中のアプリIDを変更。
+ * 登録中のアプリIDを削除。
  */
 @Component({
   components: {
