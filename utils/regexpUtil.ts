@@ -1,3 +1,6 @@
+/**
+ * 正規表現関連のUtilクラス。
+ */
 export default class RegexpUtil {
   /**
    * 指定した文字列内から指定した正規表現パターンの文字列を抽出する。

@@ -30,7 +30,14 @@
             </v-card-subtitle>
 
             <v-card-text class="body-1">
-              {{ item.contents }}
+              <!-- 内容 -->
+              <div class="body-1">
+                {{ item.contents.slice(0, newsSummaryDisplayContentsNum - 1) }}…
+              </div>
+              <details class="pa-4 news-contents body-2">
+                <summary class="mb-2">全文を見る</summary>
+                {{ item.contents }}
+              </details>
 
               <!-- タグ情報 -->
               <div v-if="item.tags !== undefined" class="mt-4">
@@ -48,9 +55,6 @@
 
               <!-- アクションボタン -->
               <div class="mt-4">
-                <!-- 詳細ボタン -->
-                <v-btn class="primary" block>詳細</v-btn>
-
                 <!-- Steam/外部サイトへのリンクボタン -->
                 <!-- Steamリンクであればそのままリンクボタン表示 -->
                 <div v-if="!item.is_external_url" class="mt-4">
@@ -101,9 +105,11 @@ import ApiWrapper from '@/components/common/api/ApiWrapper.vue'
 
 import { appWatcherModule } from '@/store/modules/appWatcher'
 import MathUtil from '@/utils/mathUtil'
+import DateTimeUtil from '@/utils/dateTimeUtil'
+import Settings from '@/config/settings'
 
 /**
- * App情報の概要出力。
+ * ニュース一覧。
  */
 @Component({
   components: {
@@ -133,6 +139,11 @@ export default class NewsSummary extends Vue {
    */
   private externalLinkDialog = false
 
+  /**
+   * ニュース概要欄にて画面に表示させる文字数。
+   */
+  private newsSummaryDisplayContentsNum = Settings.newsSummaryDisplayContentsNum
+
   async fetch() {
     const response = await appWatcherModule.getNewsForApp()
 
@@ -144,10 +155,13 @@ export default class NewsSummary extends Vue {
    * 指定したTimeStampを日付&時間に変更。
    */
   private convertTimestampToDateTime(timestamp: number) {
-    const dateTime = new Date(timestamp * 1000)
-    return `${dateTime.toLocaleDateString(
-      'ja-JP'
-    )} ${dateTime.toLocaleTimeString('ja-JP')}`
+    return DateTimeUtil.convertTimestampToDateTime(timestamp)
   }
 }
 </script>
+
+<style scoped>
+.news-contents {
+  white-space: pre-wrap;
+}
+</style>

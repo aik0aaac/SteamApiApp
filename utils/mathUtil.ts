@@ -1,3 +1,6 @@
+/**
+ * Math関連のUtilクラス。
+ */
 export default class MathUtil {
   /**
    * 任意の桁で四捨五入する。

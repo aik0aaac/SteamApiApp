@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator'
 import ApiWrapper from '@/components/common/api/ApiWrapper.vue'
 import ChartBar from '@/components/common/chart/ChartBar.vue'
 import { ChartData, ChartOptions } from 'chart.js'
@@ -28,7 +28,7 @@ import { ChartData, ChartOptions } from 'chart.js'
 import { appWatcherModule } from '@/store/modules/appWatcher'
 
 /**
- * App情報の概要出力。
+ * レビューヒストグラム。
  */
 @Component({
   components: {

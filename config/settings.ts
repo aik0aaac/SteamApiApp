@@ -12,4 +12,9 @@ export default class Settings {
    * ※「&」だとBFF側のRequestParameterとして解釈されてしまうので、これを防ぐため。
    */
   public static getRequestParameterReplaceStr = '*'
+
+  /**
+   * ニュース概要欄にて画面に表示させる文字数。
+   */
+  public static newsSummaryDisplayContentsNum = 200
 }

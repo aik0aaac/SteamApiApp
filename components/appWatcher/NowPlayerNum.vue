@@ -25,7 +25,7 @@ import ApiWrapper from '@/components/common/api/ApiWrapper.vue'
 import { appWatcherModule } from '@/store/modules/appWatcher'
 
 /**
- * App情報の概要出力。
+ * 現在プレイ中の人数。
  */
 @Component({
   components: {

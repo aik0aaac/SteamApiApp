@@ -50,7 +50,7 @@ import { appWatcherModule } from '@/store/modules/appWatcher'
 import MathUtil from '@/utils/mathUtil'
 
 /**
- * App情報の概要出力。
+ * 実績取得比率一覧。
  */
 @Component({
   components: {

@@ -27,6 +27,8 @@ import { Prop } from 'vue-property-decorator'
 import ApiLoading from '@/components/common/api/ApiLoading.vue'
 import ApiError from '@/components/common/api/ApiError.vue'
 
+import DateTimeUtil from '@/utils/dateTimeUtil'
+
 /**
  * App情報の概要出力。
  */
@@ -47,11 +49,7 @@ export default class ApiWrapper extends Vue {
    * API最終更新日時。
    */
   private get apiLastUpdateDate() {
-    const dateTime = new Date(this.fetchState.timestamp)
-    return `
-      ${dateTime.toLocaleDateString('ja-JP')} 
-      ${dateTime.toLocaleTimeString('ja-JP')}
-    `
+    return DateTimeUtil.convertTimestampToDateTime(this.fetchState.timestamp, 1)
   }
 }
 </script>
