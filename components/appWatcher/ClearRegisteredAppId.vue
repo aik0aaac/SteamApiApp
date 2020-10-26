@@ -27,16 +27,13 @@
 import Vue from 'vue'
 import Component from 'nuxt-class-component'
 
-import { appWatcherModule } from '@/store/modules/appWatcher'
-import AppIdRegistration from '~/components/common/AppIdRegistration.vue'
+import { dataModule } from '@/store/modules/dataModule'
 
 /**
  * 登録中のアプリIDを削除。
  */
 @Component({
-  components: {
-    AppIdRegistration,
-  },
+  components: {},
 })
 export default class ClearRegisteredAppId extends Vue {
   /**
@@ -44,7 +41,7 @@ export default class ClearRegisteredAppId extends Vue {
    */
   private clearAppId() {
     // LocalStorageから情報をClear。
-    appWatcherModule.clearAppId()
+    dataModule.clearAppIdList()
   }
 
   /**

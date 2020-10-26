@@ -2,12 +2,12 @@
   <v-container>
     <div class="headline pb-1">{{ pageSetting.title }}</div>
     <div class="body-1">{{ pageSetting.subTitle }}</div>
-    <div>
+    <!-- <div>
       <v-breadcrumbs
         :items="pageSetting.breadcrumbs"
         class="px-0"
       ></v-breadcrumbs>
-    </div>
+    </div> -->
     <slot name="main"></slot>
   </v-container>
 </template>

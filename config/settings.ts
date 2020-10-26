@@ -8,6 +8,11 @@ export default class Settings {
   public static appTitle = 'Steam Api APP'
 
   /**
+   * アプリ初期登録時のラベル名。
+   */
+  public static appIdInitializeLabel = 'アプリ1'
+
+  /**
    * BFF経由でSteamAPIへGETパラメータを送付する際、第二引数以降に「&」の代わりに付与する文字。
    * ※「&」だとBFF側のRequestParameterとして解釈されてしまうので、これを防ぐため。
    */

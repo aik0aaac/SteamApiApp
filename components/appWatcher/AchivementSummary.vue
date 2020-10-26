@@ -46,7 +46,8 @@
 import { Component, Vue, Watch } from 'nuxt-property-decorator'
 import ApiWrapper from '@/components/common/api/ApiWrapper.vue'
 
-import { appWatcherModule } from '@/store/modules/appWatcher'
+import { appWatcherModule } from '@/store/modules/appWatcherModule'
+import { dataModule } from '@/store/modules/dataModule'
 import MathUtil from '@/utils/mathUtil'
 
 /**
@@ -58,13 +59,6 @@ import MathUtil from '@/utils/mathUtil'
   },
 })
 export default class AchivementSummary extends Vue {
-  /**
-   *  登録中のアプリID。
-   */
-  private get appId() {
-    return appWatcherModule.appId
-  }
-
   /**
    * APIデータを格納。
    */
@@ -117,11 +111,13 @@ export default class AchivementSummary extends Vue {
   private steamDbUrl = ''
 
   mounted() {
-    this.steamDbUrl = `https://steamdb.info/app/${this.appId}/stats/`
+    this.steamDbUrl = `https://steamdb.info/app/${dataModule.currentAppId.appId}/stats/`
   }
 
   async fetch() {
-    const response = await appWatcherModule.getGlobalAchievementPercentagesForApp()
+    const response = await appWatcherModule.getGlobalAchievementPercentagesForApp(
+      dataModule.currentAppId.appId
+    )
 
     // データが存在=実績データが存在するゲームであすれば格納
     if (Object.keys(response).length !== 0) {
