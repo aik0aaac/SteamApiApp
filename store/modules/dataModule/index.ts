@@ -53,7 +53,10 @@ class DataModule extends VuexModule implements IDataState {
   @Mutation
   public setAppId(data: IAppId): void {
     // アプリIDリストが存在しなければ新規作成
-    if (!this.isRegisteredAppIdList) {
+    if (
+      JSON.stringify(this._appIdList) ===
+      JSON.stringify(dataLocalStorage.isErrorLocalStorageData)
+    ) {
       this._appIdList = [data]
     } else {
       // アプリIDリストが存在すれば追加処理

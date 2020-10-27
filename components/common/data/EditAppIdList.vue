@@ -10,6 +10,13 @@
       <v-card-title class="headline"> 登録中のアプリを変更 </v-card-title>
 
       <v-card-text>
+        <v-alert outlined type="warning" class="body-2">
+          お気に入りアプリの情報は<span class="font-weight-bold"
+            >ブラウザ内</span
+          >に保持されています。<br />
+          別の端末やブラウザから閲覧した場合、お気に入りアプリの情報が削除されてしまうので注意を。
+        </v-alert>
+
         <!-- 登録済みのアプリIDリスト -->
         <!-- TODO: D&Dで並び替えできる様にする -->
         <v-data-table
@@ -19,16 +26,6 @@
           class="elevation-1"
           :footer-props="footerProps"
         >
-          <!-- DataTableのHeader -->
-          <template v-slot:top>
-            <div class="text-right">
-              <v-btn color="primary" outlined @click="onClickSaveHandler">
-                <v-icon x-small class="mr-2">fas fa-save</v-icon>
-                保存
-              </v-btn>
-            </div>
-          </template>
-
           <!-- 表示名 -->
           <template v-slot:item.label="{ item }">
             <v-text-field v-model="item.label" />
@@ -39,7 +36,18 @@
               contain
               :src="`https://cdn.cloudflare.steamstatic.com/steam/apps/${item.appId}/header.jpg`"
               width="160px"
-            />
+            >
+            </v-img>
+            <v-btn
+              class="my-3"
+              color="default"
+              block
+              outlined
+              @click="onClickRemoveHandler(item)"
+            >
+              <v-icon x-small class="mr-2">fas fa-trash</v-icon>
+              削除
+            </v-btn>
           </template>
         </v-data-table>
 
@@ -52,6 +60,7 @@
                 <v-text-field
                   v-model="label"
                   label="表示名"
+                  clearable
                   persistent-hint
                   required
                 />
@@ -62,6 +71,7 @@
                   v-model="appUrl"
                   :rules="appUrlRules"
                   label="appUrl"
+                  clearable
                   hint="お気に入りのSteamアプリのURLを入力してください"
                   persistent-hint
                   required
@@ -166,6 +176,10 @@ export default class EditAppIdList extends Vue {
    */
   private appUrl = ''
   /**
+   * 入力されるラベル。
+   */
+  private label = ''
+  /**
    * 入力AppURLのバリデーションルール。
    */
   private appUrlRules = [
@@ -177,9 +191,13 @@ export default class EditAppIdList extends Vue {
   ]
 
   /**
-   * 入力されるラベル。
+   * フォーム内容をClearする。
    */
-  private label = ''
+  private clearForm() {
+    this.appUrl = ''
+    this.label = ''
+  }
+
   /**
    * 追加ボタン押下時のハンドラー。
    */
@@ -188,8 +206,18 @@ export default class EditAppIdList extends Vue {
       appId: RegexpUtil.match(this.appUrl, RegexpUtil.steamUrlToAppId),
       label: this.label,
     }
-    this.appIdList.push(data)
     dataModule.setAppId(data)
+
+    // フォーム内容をClean
+    this.clearForm()
+  }
+
+  /**
+   * 削除ボタン押下時のハンドラー。
+   */
+  private onClickRemoveHandler(data: IAppId) {
+    this.appIdList = this.appIdList.filter((e) => e.appId !== data.appId)
+    dataModule.setAppIdList(this.appIdList)
   }
 }
 </script>
