@@ -7,6 +7,7 @@
             v-model="appUrl"
             :rules="appUrlRules"
             label="appUrl"
+            clearable
             hint="お気に入りのSteamアプリのURLを入力してください"
             persistent-hint
             required

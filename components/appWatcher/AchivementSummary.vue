@@ -32,6 +32,7 @@
                   label="検索"
                   hint="実績ID、比率で計算できます"
                   persistent-hint
+                  clearable
                 />
               </v-container>
             </template>

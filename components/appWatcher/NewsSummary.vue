@@ -32,11 +32,15 @@
             <v-card-text class="body-1">
               <!-- 内容 -->
               <div class="body-1">
-                {{ item.contents.slice(0, newsSummaryDisplayContentsNum - 1) }}…
+                <steam-format-display
+                  :text="
+                    item.contents.slice(0, newsSummaryDisplayContentsNum - 1)
+                  "
+                />
               </div>
               <details class="pa-4 news-contents body-2">
                 <summary class="mb-2">全文を見る</summary>
-                {{ item.contents }}
+                <steam-format-display :text="item.contents" />
               </details>
 
               <!-- タグ情報 -->
@@ -102,6 +106,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from 'nuxt-property-decorator'
 import ApiWrapper from '@/components/common/api/ApiWrapper.vue'
+import SteamFormatDisplay from '@/components/common/SteamFormatDisplay.vue'
 
 import { appWatcherModule } from '@/store/modules/appWatcherModule'
 import { dataModule } from '@/store/modules/dataModule'
@@ -115,6 +120,7 @@ import Settings from '@/config/settings'
 @Component({
   components: {
     ApiWrapper,
+    SteamFormatDisplay,
   },
 })
 export default class NewsSummary extends Vue {
@@ -158,6 +164,6 @@ export default class NewsSummary extends Vue {
 
 <style scoped>
 .news-contents {
-  white-space: pre-wrap;
+  white-space: pre-line;
 }
 </style>
