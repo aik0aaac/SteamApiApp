@@ -52,6 +52,7 @@
                   color="secondary"
                   rounded
                   small
+                  class="mr-2"
                 >
                   {{ tag }}
                 </v-btn>

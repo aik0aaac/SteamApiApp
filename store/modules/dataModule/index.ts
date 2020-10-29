@@ -71,7 +71,18 @@ class DataModule extends VuexModule implements IDataState {
    * アプリIDリストを丸ごとセット。
    */
   @Mutation
-  public setAppIdList(appIdList: Array<IAppId>): void {
+  public setAppIdList(rawAppIdList: Array<IAppId>): void {
+    // 不正な値が混入することを防ぐため、一度値を取り出し格納し直す。
+    const appIdList: Array<IAppId> = []
+    rawAppIdList.forEach((e) => {
+      const tmp: IAppId = {
+        appId: e.appId,
+        label: e.label,
+      }
+      appIdList.push(tmp)
+    })
+
+    // 格納し直した値をセット
     this._appIdList = appIdList
     // LocalStorage上のデータを更新
     dataLocalStorage.setAppIdList(appIdList)

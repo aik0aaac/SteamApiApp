@@ -1,5 +1,5 @@
 {
-  "name": "steam-api-app",
+  "name": "steam-watcher",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -21,7 +21,9 @@
     "http-status-codes": "^2.1.4",
     "nuxt": "^2.14.6",
     "request": "^2.88.2",
-    "vue-chartjs": "^3.5.1"
+    "vee-validate": "^3.4.3",
+    "vue-chartjs": "^3.5.1",
+    "vue-clipboard2": "^0.3.1"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",

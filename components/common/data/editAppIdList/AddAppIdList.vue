@@ -2,7 +2,21 @@
   <v-form v-model="formValid">
     <v-container>
       <v-row>
-        <v-col cols="12" md="12">
+        <v-col cols="12">
+          <div class="headline">アプリを追加</div>
+        </v-col>
+        <!-- 表示名 -->
+        <v-col cols="12" sm="6">
+          <v-text-field
+            v-model="label"
+            label="表示名"
+            clearable
+            persistent-hint
+            required
+          />
+        </v-col>
+        <!-- アプリURL -->
+        <v-col cols="12" sm="6">
           <v-text-field
             v-model="appUrl"
             :rules="appUrlRules"
@@ -13,11 +27,12 @@
             required
           />
         </v-col>
+        <!-- 追加ボタン -->
         <v-col cols="12" md="12">
-          <v-btn color="primary" block @click="onclickHandler"> 登録 </v-btn>
-        </v-col>
-        <v-col cols="12" md="12">
-          <import-app-id-list />
+          <v-btn color="primary" block @click="onClickAddHandler">
+            <v-icon x-small class="mr-2">fas fa-plus</v-icon>
+            追加
+          </v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -30,22 +45,17 @@ import Component from 'nuxt-class-component'
 
 import { dataModule } from '@/store/modules/dataModule'
 
-import ImportAppIdList from '@/components/common/data/ImportAppIdList.vue'
-
 import { IAppId } from '~/store/modules/dataModule/types'
-import Settings from '~/config/settings'
 
 import RegexpUtil from '~/utils/regexpUtil'
 
 /**
- * アプリID初期登録。
+ * 登録中のアプリIDを変更。
  */
 @Component({
-  components: {
-    ImportAppIdList,
-  },
+  components: {},
 })
-export default class InitialRegisteredAppId extends Vue {
+export default class AddAppIdList extends Vue {
   /**
    * フォームバリデーション状態。
    */
@@ -54,6 +64,10 @@ export default class InitialRegisteredAppId extends Vue {
    * 入力されるAppURL。
    */
   private appUrl = ''
+  /**
+   * 入力されるラベル。
+   */
+  private label = ''
   /**
    * 入力AppURLのバリデーションルール。
    */
@@ -66,14 +80,25 @@ export default class InitialRegisteredAppId extends Vue {
   ]
 
   /**
-   * 登録ボタン押下時のハンドラー。
+   * フォーム内容をClearする。
    */
-  private onclickHandler() {
+  private clearForm() {
+    this.appUrl = ''
+    this.label = ''
+  }
+
+  /**
+   * 追加ボタン押下時のハンドラー。
+   */
+  private onClickAddHandler() {
     const data: IAppId = {
       appId: RegexpUtil.match(this.appUrl, RegexpUtil.steamUrlToAppId),
-      label: Settings.appIdInitializeLabel,
+      label: this.label,
     }
     dataModule.setAppId(data)
+
+    // フォーム内容をClean
+    this.clearForm()
   }
 }
 </script>

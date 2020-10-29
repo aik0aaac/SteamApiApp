@@ -35,9 +35,15 @@ export default class SteamFormatUtil {
 
     // h1-h6開きタグを処理
     let regexp: RegExp = /\[h1\]/g
-    result = text.replace(regexp, `<div class="display-4 mt-4 mb-2">`)
+    result = text.replace(
+      regexp,
+      `<div class="display-2 font-weight-bold text--primary text-decoration-overline mt-4 mb-2">`
+    )
     regexp = /\[h2\]/g
-    result = result.replace(regexp, `<div class="display-3 mt-4 mb-2">`)
+    result = result.replace(
+      regexp,
+      `<div class="display-2 font-weight-bold mt-4 mb-2">`
+    )
     regexp = /\[h3\]/g
     result = result.replace(regexp, `<div class="display-2 mt-4 mb-2">`)
     regexp = /\[h4\]/g
@@ -307,10 +313,15 @@ export default class SteamFormatUtil {
    * 画像コンテンツ を変換。
    */
   private static convertImage(text: string): string {
-    // タグを処理
-    const regexp = /\[img\]{STEAM_CLAN_IMAGE}(.*)\[\/img\]/g
-    const result = text.replace(regexp, (_, p1) => {
-      return `<img src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/clans/${p1}" style="max-width: 100%;" />`
+    // タグを処理(STEAM_CLAN_IMAGE画像のパターン)
+    let regexp = /\[img\]{STEAM_CLAN_IMAGE}(.*)\[\/img\]/g
+    let result = text.replace(regexp, (_, p1) => {
+      return `<img src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/clans/${p1}" />`
+    })
+
+    regexp = /\[img\](.*)\[\/img\]/g
+    result = result.replace(regexp, (_, p1) => {
+      return `<img src="${p1}" />`
     })
 
     return result

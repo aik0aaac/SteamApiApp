@@ -27,7 +27,7 @@ export default class RegexpUtil {
   public static steamUrlToAppId: RegExp = /https:\/\/store.steampowered.com\/app\/([0-9]+)\//
 
   /**
-   * SteamAppIの正規表現パターン。
+   * SteamAppIdの正規表現パターン。
    */
   public static steamAppId: RegExp = /^[0-9]+$/
 

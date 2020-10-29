@@ -20,7 +20,7 @@ export default class DataLocalStorage extends BaseLocalStorage {
   /**
    * 現在登録中のアプリIDリスト。
    */
-  private appIdListKeyName = 'steamApiApp_appId'
+  private appIdListKeyName = 'steamWatcher_appIdList'
 
   /**
    * アプリIDリストがLocalStorageに登録されているかチェック。
