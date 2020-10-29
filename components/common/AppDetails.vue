@@ -27,9 +27,6 @@
               コミュニティハブへ
             </v-btn>
           </v-col>
-          <v-col cols="12" sm="12" class="pt-0">
-            <slot name="addCardActions"></slot>
-          </v-col>
         </v-row>
       </v-card-text>
     </v-card>
