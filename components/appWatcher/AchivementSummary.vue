@@ -4,8 +4,8 @@
     <v-card-subtitle class="caption">
       このアプリの実績の全ユーザー取得比率が見れます。<br />
       実績IDがどの実績を指すかについては
-      <a :href="steamDbUrl" target="_blank" class="text-decoration-none"
-        ><v-icon x-small class="mx-1">fas fa-external-link-alt</v-icon>
+      <a :href="steamDbUrl" target="_blank" class="text-decoration-none">
+        <v-icon x-small class="mx-1">fas fa-external-link-alt</v-icon>
         SteamDB
       </a>
       を参照してください。

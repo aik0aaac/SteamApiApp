@@ -5,7 +5,7 @@ export default class Settings {
   /**
    * アプリタイトル。
    */
-  public static appTitle = 'Steam Api APP'
+  public static appTitle = 'Steam Watcher'
 
   /**
    * アプリ初期登録時のラベル名。
@@ -22,4 +22,9 @@ export default class Settings {
    * ニュース概要欄にて画面に表示させる文字数。
    */
   public static newsSummaryDisplayContentsNum = 200
+
+  /**
+   * 開発者から故意かもしれない攻撃を受けた時に、Consoleにこっそり表示させるメッセージ。
+   */
+  public static izimeraretaMessage = `…もし偶発的なものでなく故意的なものであれば、あまり本アプリをいじめないであげてください。`
 }

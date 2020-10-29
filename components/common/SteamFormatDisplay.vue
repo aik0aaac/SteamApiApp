@@ -5,7 +5,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
-import StringUtil from '@/utils/stringUtil'
+import HtmlParseUtil from '@/utils/htmlParseUtil'
 import SteamFormatUtil from '@/utils/steamFormatUtil'
 
 /**
@@ -21,9 +21,11 @@ export default class SteamFormatDisplay extends Vue {
    */
   get htmlText() {
     // Steamテキスト書式をコンバート
-    const htmlText = SteamFormatUtil.convertSteamFormatToHtmlTag(this.text)
+    let htmlText = SteamFormatUtil.convertSteamFormatToHtmlTag(this.text)
+    // 画像のwidthを強制的にauto、max-width100%にする
+    htmlText = HtmlParseUtil.convertImgToScreenFit(htmlText)
     // scriptタグを無効化して返却
-    return StringUtil.removeScriptTag(htmlText)
+    return HtmlParseUtil.removeScriptTag(htmlText)
   }
 }
 </script>
