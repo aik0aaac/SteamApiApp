@@ -40,10 +40,15 @@ class DataModule extends VuexModule implements IDataState {
    * アプリIDが登録されているかどうか。
    */
   get isRegisteredAppIdList(): boolean {
-    return (
-      JSON.stringify(this._appIdList) !==
+    if (this._appIdList.length <= 0) {
+      return false
+    } else if (
+      JSON.stringify(this._appIdList) ===
       JSON.stringify(dataLocalStorage.isErrorLocalStorageData)
-    )
+    ) {
+      return false
+    }
+    return true
   }
 
   /**
@@ -93,6 +98,13 @@ class DataModule extends VuexModule implements IDataState {
    */
   get currentAppId(): IAppId {
     return this._currentAppId
+  }
+
+  /**
+   * アプリIDが登録されているかどうか。
+   */
+  get isRegisteredCurrentAppId(): boolean {
+    return this._currentAppId.appId !== ''
   }
 
   /**

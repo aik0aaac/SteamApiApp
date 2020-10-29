@@ -8,7 +8,10 @@
 
       <!-- 登録中のアプリID情報 -->
       <!-- アプリIDが変更されたら再ロードされるようにKeyを設定 -->
-      <v-container v-if="isRegisteredAppIdList" :key="currentAppId.appId">
+      <v-container
+        v-if="isRegisteredAppIdList && isRegisteredCurrentAppId"
+        :key="currentAppId.appId"
+      >
         <v-row>
           <v-col cols="12" class="pt-0">
             <!-- アプリID表示/選択中のアプリIDを変更 -->
@@ -54,6 +57,9 @@
             <clear-registered-app-id />
           </v-col>
         </v-row>
+
+        <!-- API情報更新ボタン -->
+        <reload-steam-api-data />
       </v-container>
     </template>
   </page-template>
@@ -74,6 +80,7 @@ import NewsSummary from '~/components/appWatcher/NewsSummary.vue'
 import ReviewHistogram from '~/components/appWatcher/ReviewHistogram.vue'
 import AchivementSummary from '~/components/appWatcher/AchivementSummary.vue'
 import ClearRegisteredAppId from '~/components/appWatcher/ClearRegisteredAppId.vue'
+import ReloadSteamApiData from '~/components/common/ReloadSteamApiData.vue'
 
 // settings import
 import { pageSettings } from '~/config/pageSettings'
@@ -90,6 +97,7 @@ import { pageSettings } from '~/config/pageSettings'
     ReviewHistogram,
     AchivementSummary,
     ClearRegisteredAppId,
+    ReloadSteamApiData,
   },
 })
 export default class AppWatcher extends Vue {
@@ -110,6 +118,13 @@ export default class AppWatcher extends Vue {
    */
   private get isRegisteredAppIdList() {
     return dataModule.isRegisteredAppIdList
+  }
+
+  /**
+   * アプリIDが登録されているかどうか。
+   */
+  get isRegisteredCurrentAppId(): boolean {
+    return dataModule.isRegisteredCurrentAppId
   }
 }
 </script>

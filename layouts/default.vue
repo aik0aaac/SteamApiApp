@@ -35,7 +35,7 @@
 
     <!-- フッター -->
     <v-footer app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <span>@aik0aaat</span>
     </v-footer>
   </v-app>
 </template>

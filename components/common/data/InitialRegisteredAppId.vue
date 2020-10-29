@@ -69,11 +69,15 @@ export default class InitialRegisteredAppId extends Vue {
    * 登録ボタン押下時のハンドラー。
    */
   private onclickHandler() {
+    // アプリIDリストにデータを登録
     const data: IAppId = {
       appId: RegexpUtil.match(this.appUrl, RegexpUtil.steamUrlToAppId),
       label: Settings.appIdInitializeLabel,
     }
     dataModule.setAppId(data)
+
+    // 現在選択中のアプリIDにもデータを登録
+    dataModule.setCurrentAppId(data)
   }
 }
 </script>

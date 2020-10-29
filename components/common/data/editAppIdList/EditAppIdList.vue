@@ -15,10 +15,10 @@
 
         <!-- 注意文言 -->
         <v-alert outlined type="warning" class="body-2">
-          お気に入りアプリの情報は<span class="font-weight-bold"
-            >ブラウザ内</span
-          >に保持されています。<br />
-          別の端末やブラウザから閲覧した場合、お気に入りアプリの情報が削除されてしまうので注意を。
+          アプリの情報は
+          <span class="font-weight-bold">ブラウザ内</span>
+          に保持されます。<br />
+          別端末や別ブラウザから閲覧すると登録しなおしになるのでご注意を。
         </v-alert>
 
         <!-- アプリIDの追加欄 -->
