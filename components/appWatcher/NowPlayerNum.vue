@@ -2,12 +2,11 @@
   <v-card>
     <v-card-text class="title pb-0">現在プレイ中の人数</v-card-text>
     <v-card-text>
-      <!-- データ取得中 -->
       <api-wrapper :fetch-state="$fetchState">
         <template #data>
+          <!-- プレイ人数 -->
           <div class="headline">{{ data.player_count }}人</div>
-          <!-- TODO: アクティブユーザー数のUIは人のアイコンをたくさん並べて視覚的に分かりやすくしよう
-        -->
+          <!-- 注意文 -->
           <div class="caption">
             ※上記はオンラインかつSteamに接続中のプレイ人口です。<br />
             オフラインもしくはSteam未接続のプレイ人口は含まれません。

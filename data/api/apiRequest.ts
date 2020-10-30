@@ -41,8 +41,16 @@ export default class ApiRequest {
    * 指定したアプリのニュースリリースを取得するAPIURL。
    * @param appId アプリID。
    */
-  public getNewsForApp(appId: string): string {
+  public getNews(appId: string): string {
     return `${this.steamApiBaseUrl}/ISteamNews/GetNewsForApp/v2/?appid=${appId}`
+  }
+
+  /**
+   * 指定したアプリのレビューを取得するAPIURL。
+   * @param appId アプリID。
+   */
+  public getReview(appId: string): string {
+    return `${this.steamApiReviewUrl}/appreviews/${appId}?json=1`
   }
 
   /**

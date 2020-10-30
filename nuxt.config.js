@@ -75,6 +75,7 @@ export default {
         ['@babel/plugin-proposal-class-properties', { loose: true }],
       ],
     },
+    // analyze: true,
   },
   // vuex-module-decorators setting
   transpileDependencies: ['vuex-module-decorators'],

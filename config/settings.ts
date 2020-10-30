@@ -24,6 +24,15 @@ export default class Settings {
   public static newsSummaryDisplayContentsNum = 200
 
   /**
+   * レビュー欄にて「最近」と指定する日数。
+   */
+  public static reviewRecentDays = 30
+  /**
+   * レビュー概要欄にて画面に表示させる文字数。
+   */
+  public static reviewSummaryDisplayContentsNum = 200
+
+  /**
    * 開発者から故意かもしれない攻撃を受けた時に、Consoleにこっそり表示させるメッセージ。
    */
   public static izimeraretaMessage = `…もし偶発的なものでなく故意的なものであれば、あまり本アプリをいじめないであげてください。`
