@@ -19,8 +19,6 @@ import { IAppId } from '~/store/modules/dataModule/types'
 })
 export default class ReloadSteamApiData extends Vue {
   private onClickHandler() {
-    console.log('a')
-
     // 現在選択中のアプリIDを一度空にしてもう一度入れ直すことで、情報を更新
     const tmp = dataModule.currentAppId
     const emptyData: IAppId = {

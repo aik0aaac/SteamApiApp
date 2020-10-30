@@ -32,12 +32,30 @@ class AppWatcherModule extends VuexModule implements IAppWatcherState {
    */
   @Action({})
   public async getNewsForApp(appId: string) {
+    const option = Settings.getRequestParameterReplaceStr + 'count=5'
+    const rawResponse = await axios.get(
+      apiRequest.getRequestViaBff + apiRequest.getNews(appId) + option
+    )
+    return rawResponse.data
+  }
+
+  /**
+   * 指定したアプリの最近最も参考になったレビュー10件取得。
+   */
+  @Action({})
+  public async getReviewForAppWatcher(appId: string) {
     const option =
       Settings.getRequestParameterReplaceStr +
+      'filter=all' +
       Settings.getRequestParameterReplaceStr +
-      'count=5'
+      'day_range=' +
+      Settings.reviewRecentDays +
+      Settings.getRequestParameterReplaceStr +
+      'language=all' +
+      Settings.getRequestParameterReplaceStr +
+      'num_per_page=10'
     const rawResponse = await axios.get(
-      apiRequest.getRequestViaBff + apiRequest.getNewsForApp(appId) + option
+      apiRequest.getRequestViaBff + apiRequest.getReview(appId) + option
     )
     return rawResponse.data
   }

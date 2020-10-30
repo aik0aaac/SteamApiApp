@@ -1,39 +1,30 @@
 <template>
   <v-card>
-    <v-card-text class="title pb-0">レビューヒストグラム</v-card-text>
+    <v-card-subtitle class="caption">
+      {{ startDate }}〜 {{ endDate }}までの評価数推移
+    </v-card-subtitle>
+
     <v-card-text>
-      <!-- データ取得中 -->
-      <api-wrapper :fetch-state="$fetchState">
-        <template #data>
-          <div class="caption">
-            {{ startDate }}〜 {{ endDate }}までの評価数推移
-          </div>
-          <chart-bar
-            :chart-data="chartData"
-            :options="chartOption"
-            :styles="chartStyles"
-          />
-        </template>
-      </api-wrapper>
+      <!-- ヒストグラム -->
+      <chart-bar
+        :chart-data="chartData"
+        :options="chartOption"
+        :styles="chartStyles"
+      />
     </v-card-text>
   </v-card>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
-import ApiWrapper from '@/components/common/api/ApiWrapper.vue'
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import ChartBar from '@/components/common/chart/ChartBar.vue'
 import { ChartData, ChartOptions } from 'chart.js'
-
-import { appWatcherModule } from '@/store/modules/appWatcherModule'
-import { dataModule } from '@/store/modules/dataModule'
 
 /**
  * レビューヒストグラム。
  */
 @Component({
   components: {
-    ApiWrapper,
     ChartBar,
   },
 })
@@ -41,7 +32,8 @@ export default class ReviewHistogram extends Vue {
   /**
    * APIデータを格納。
    */
-  private data: any = null
+  @Prop({ default: {} })
+  private data: any
 
   /**
    * レビュー計測開始日時。
@@ -52,19 +44,7 @@ export default class ReviewHistogram extends Vue {
    */
   private endDate = ''
 
-  /**
-   * 指定したTimeStampを日付に変更。
-   */
-  private convertTimestampToDate(timestamp: number) {
-    const dateTime = new Date(timestamp * 1000)
-    return `${dateTime.toLocaleDateString('ja-JP')}`
-  }
-
-  async fetch() {
-    this.data = await appWatcherModule.getReviewHistogram(
-      dataModule.currentAppId.appId
-    )
-
+  mounted() {
     // レビュー計測開始日時を取得
     this.startDate = this.convertTimestampToDate(this.data.results.start_date)
     // レビュー計測終了日時を取得
@@ -151,6 +131,14 @@ export default class ReviewHistogram extends Vue {
   private chartStyles = {
     height: '100%',
     width: '100%',
+  }
+
+  /**
+   * 指定したTimeStampを日付に変更。
+   */
+  private convertTimestampToDate(timestamp: number) {
+    const dateTime = new Date(timestamp * 1000)
+    return `${dateTime.toLocaleDateString('ja-JP')}`
   }
 }
 </script>

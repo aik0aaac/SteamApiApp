@@ -37,10 +37,10 @@
           </v-col>
         </v-row>
 
-        <!-- レビューヒストグラム -->
+        <!-- レビューサマリ -->
         <v-row>
           <v-col cols="12" sm="12" class="pt-0">
-            <review-histogram />
+            <review-summary />
           </v-col>
         </v-row>
 
@@ -76,9 +76,9 @@ import CurrentAppIdList from '~/components/common/data/CurrentAppIdList.vue'
 import EditAppIdList from '~/components/common/data/editAppIdList/EditAppIdList.vue'
 import AppDetails from '~/components/common/AppDetails.vue'
 import NowPlayerNum from '~/components/appWatcher/NowPlayerNum.vue'
-import NewsSummary from '~/components/appWatcher/NewsSummary.vue'
-import ReviewHistogram from '~/components/appWatcher/ReviewHistogram.vue'
-import AchivementSummary from '~/components/appWatcher/AchivementSummary.vue'
+import NewsSummary from '~/components/appWatcher/news/NewsSummary.vue'
+import ReviewSummary from '~/components/appWatcher/review/ReviewSummary.vue'
+import AchivementSummary from '~/components/appWatcher/achivement/AchivementSummary.vue'
 import ClearRegisteredAppId from '~/components/appWatcher/ClearRegisteredAppId.vue'
 import ReloadSteamApiData from '~/components/common/ReloadSteamApiData.vue'
 
@@ -94,7 +94,7 @@ import { pageSettings } from '~/config/pageSettings'
     AppDetails,
     NowPlayerNum,
     NewsSummary,
-    ReviewHistogram,
+    ReviewSummary,
     AchivementSummary,
     ClearRegisteredAppId,
     ReloadSteamApiData,
