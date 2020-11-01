@@ -2,9 +2,11 @@
   <v-card>
     <v-card-title class="title">レビューサマリ</v-card-title>
     <v-card-subtitle class="caption">
-      レビューグラフ、最近の最も参考になったレビュー10件を見れます。<br />
+      レビューグラフ、直近{{
+        reviewRecentDays
+      }}日間で最も参考になった日本語レビュー最大10件を見れます。<br />
       <!-- TODO: ReviewWatcherへのリンク -->
-      もっと多くのレビューを見たい場合は
+      もっと多くのレビュー、日本語以外のレビューを見たい場合は
       <a href="/" class="text-decoration-none"> こちら </a>
       からご覧ください。
     </v-card-subtitle>
@@ -14,6 +16,9 @@
         <template #data>
           <!-- レビュー一覧 -->
           <review-summary-details :data="reviewData.query_summary" />
+
+          <v-divider />
+          <v-divider />
 
           <!-- レビューヒストグラム -->
           <review-histogram :data="reviewHistogramData" class="mb-2" />
@@ -37,11 +42,15 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import ApiWrapper from '@/components/common/api/ApiWrapper.vue'
-import ReviewHistogram from '@/components/appWatcher/review/ReviewHistogram.vue'
-import ReviewCard from '@/components/appWatcher/review/ReviewCard.vue'
+
+import ReviewSummaryDetails from '@/components/review/reviewSummaryDetails/index.vue'
+import ReviewHistogram from '@/components/review/reviewHistogram/index.vue'
+import ReviewCard from '@/components/review/reviewCard/index.vue'
 
 import { appWatcherModule } from '@/store/modules/appWatcherModule'
 import { dataModule } from '@/store/modules/dataModule'
+
+import Settings from '~/config/settings'
 
 /**
  * レビュー概要。
@@ -49,6 +58,7 @@ import { dataModule } from '@/store/modules/dataModule'
 @Component({
   components: {
     ApiWrapper,
+    ReviewSummaryDetails,
     ReviewHistogram,
     ReviewCard,
   },
@@ -72,5 +82,10 @@ export default class ReviewSummary extends Vue {
       dataModule.currentAppId.appId
     )
   }
+
+  /**
+   * appWatcher > レビューサマリー欄にて「最近」と指定する日数。
+   */
+  private reviewRecentDays = Settings.reviewRecentDays
 }
 </script>

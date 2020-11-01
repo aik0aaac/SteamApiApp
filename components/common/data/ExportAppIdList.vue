@@ -1,29 +1,30 @@
 <template>
-  <v-dialog v-model="dialog" width="80vw">
-    <template v-slot:activator="{ on, attrs }">
-      <v-btn color="primary" v-bind="attrs" block outlined v-on="on">
-        <v-icon x-small class="mx-1">fas fa-download</v-icon>
-        エクスポート
-      </v-btn>
+  <modal-template
+    open-button-text="エクスポート"
+    open-button-icon="fas fa-download"
+    open-button-color="primary"
+    :open-button-outlined="true"
+  >
+    <template #main>
+      <v-card>
+        <v-card-title class="headline"> アプリ情報エクスポート </v-card-title>
+        <v-card-subtitle class="mt-1">
+          下記の文言を移行先のSteam Watcherインポート画面に貼り付けてください。
+        </v-card-subtitle>
+        <v-card-text>
+          <v-alert outlined color="primary">{{ appIdList }}</v-alert>
+          <copy-clip-board-button :text="appIdList" />
+        </v-card-text>
+      </v-card>
     </template>
-
-    <v-card>
-      <v-card-title class="headline"> アプリ情報エクスポート </v-card-title>
-      <v-card-subtitle class="mt-1">
-        下記の文言を移行先のSteam Watcherインポート画面に貼り付けてください。
-      </v-card-subtitle>
-      <v-card-text>
-        <v-alert outlined color="primary">{{ appIdList }}</v-alert>
-        <copy-clip-board-button :text="appIdList" />
-      </v-card-text>
-    </v-card>
-  </v-dialog>
+  </modal-template>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'nuxt-class-component'
 
+import ModalTemplate from '@/components/common/template/ModalTemplate.vue'
 import CopyClipBoardButton from '@/components/common/CopyClipBoardButton.vue'
 
 import { dataModule } from '@/store/modules/dataModule'
@@ -33,15 +34,11 @@ import { dataModule } from '@/store/modules/dataModule'
  */
 @Component({
   components: {
+    ModalTemplate,
     CopyClipBoardButton,
   },
 })
 export default class ExportAppIdList extends Vue {
-  /**
-   * ダイアログ開閉状態。
-   */
-  private dialog = false
-
   /**
    * アプリIDのリスト。
    */

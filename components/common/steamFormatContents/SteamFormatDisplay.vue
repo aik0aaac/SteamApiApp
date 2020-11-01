@@ -1,5 +1,5 @@
 <template>
-  <div v-html="htmlText"></div>
+  <div class="contents" v-html="htmlText"></div>
 </template>
 
 <script lang="ts">
@@ -29,3 +29,9 @@ export default class SteamFormatDisplay extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.contents {
+  white-space: pre-line;
+}
+</style>

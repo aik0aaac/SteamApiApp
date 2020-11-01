@@ -1,6 +1,5 @@
 <template>
   <div v-if="data.tags !== undefined" class="body-1">
-    タグ:
     <v-btn
       v-for="(tag, $index) in data.tags"
       :key="$index"
@@ -10,6 +9,7 @@
       small
       class="mr-2"
     >
+      <v-icon x-small class="mr-2">fas fa-tag</v-icon>
       {{ tag }}
     </v-btn>
   </div>

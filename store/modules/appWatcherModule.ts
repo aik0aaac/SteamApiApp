@@ -40,20 +40,29 @@ class AppWatcherModule extends VuexModule implements IAppWatcherState {
   }
 
   /**
-   * 指定したアプリの最近最も参考になったレビュー10件取得。
+   * 指定したアプリの日本語の最近の最も参考になったレビュー10件取得。
+   * https://store.steampowered.com/appreviews/1256670?json=1&day_range=30&start_date=-1&end_date=-1&filter=summary&language=japanese&review_type=all&purchase_type=all&playtime_filter_min=0&playtime_filter_max=0
    */
   @Action({})
   public async getReviewForAppWatcher(appId: string) {
     const option =
       Settings.getRequestParameterReplaceStr +
-      'filter=all' +
-      Settings.getRequestParameterReplaceStr +
       'day_range=' +
       Settings.reviewRecentDays +
       Settings.getRequestParameterReplaceStr +
-      'language=all' +
+      'filter=summary' +
       Settings.getRequestParameterReplaceStr +
-      'num_per_page=10'
+      'language=japanese' +
+      Settings.getRequestParameterReplaceStr +
+      'review_type=all' +
+      Settings.getRequestParameterReplaceStr +
+      'purchase_type=all' +
+      Settings.getRequestParameterReplaceStr +
+      'num_per_page=10' +
+      Settings.getRequestParameterReplaceStr +
+      'start_date=-1' +
+      Settings.getRequestParameterReplaceStr +
+      'end_date=-1'
     const rawResponse = await axios.get(
       apiRequest.getRequestViaBff + apiRequest.getReview(appId) + option
     )
