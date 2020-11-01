@@ -4,15 +4,17 @@
       v-if="data.written_during_early_access"
       color="secondary"
       rounded
+      outlined
       small
       class="mr-2"
     >
-      アーリーアクセス中にレビュー
+      アーリーアクセス中レビュー
     </v-btn>
     <v-btn
       v-if="!data.steam_purchase"
-      color="secondary"
+      color="secondary text-capitalize"
       rounded
+      outlined
       small
       class="mr-2"
     >
@@ -20,11 +22,13 @@
     </v-btn>
     <v-btn
       v-if="data.received_for_free"
-      color="secondary"
+      color="secondary text-capitalize"
       rounded
+      outlined
       small
       class="mr-2"
     >
+      <v-icon x-small class="mr-1">fas fa-gift</v-icon>
       ギフトorSteamコードで購入
     </v-btn>
   </div>

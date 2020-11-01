@@ -1,12 +1,9 @@
 <template>
-  <div>
-    <steam-format-contents
-      :text="data.review"
-      :summary-mode="summaryMode"
-      :max-contents-length="reviewSummaryDisplayContentsNum"
-    />
-    <div>コメント数: {{ data.comment_count }}件</div>
-  </div>
+  <steam-format-contents
+    :text="data.review"
+    :summary-mode="summaryMode"
+    :max-contents-length="reviewSummaryDisplayContentsNum"
+  />
 </template>
 
 <script lang="ts">

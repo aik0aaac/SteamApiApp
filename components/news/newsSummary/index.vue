@@ -32,8 +32,9 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+
 import ApiWrapper from '@/components/common/api/ApiWrapper.vue'
-import NewsCard from '@/components/appWatcher/news/NewsCard.vue'
+import NewsCard from '@/components/news/newsCard/index.vue'
 
 import { appWatcherModule } from '@/store/modules/appWatcherModule'
 import { dataModule } from '@/store/modules/dataModule'

@@ -36,12 +36,12 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
-import NewsTitle from '@/components/appWatcher/news/parts/NewsTitle.vue'
-import NewsSubDetails from '@/components/appWatcher/news/parts/NewsSubDetails.vue'
-import NewsContents from '@/components/appWatcher/news/parts/NewsContents.vue'
-import NewsTags from '@/components/appWatcher/news/parts/NewsTags.vue'
-import NewsLink from '@/components/appWatcher/news/parts/NewsLink.vue'
-import NewsDetails from '@/components/appWatcher/news/NewsDetails.vue'
+import NewsDetails from '@/components/news/newsDetails/index.vue'
+import NewsTitle from './NewsTitle.vue'
+import NewsSubDetails from './NewsSubDetails.vue'
+import NewsContents from './NewsContents.vue'
+import NewsTags from './NewsTags.vue'
+import NewsLink from './NewsLink.vue'
 
 /**
  * ニュース概要。

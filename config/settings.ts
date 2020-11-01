@@ -24,7 +24,7 @@ export default class Settings {
   public static newsSummaryDisplayContentsNum = 200
 
   /**
-   * レビュー欄にて「最近」と指定する日数。
+   * appWatcher > レビューサマリー欄にて「最近」と指定する日数。
    */
   public static reviewRecentDays = 30
   /**
@@ -36,4 +36,22 @@ export default class Settings {
    * 開発者から故意かもしれない攻撃を受けた時に、Consoleにこっそり表示させるメッセージ。
    */
   public static izimeraretaMessage = `…もし偶発的なものでなく故意的なものであれば、あまり本アプリをいじめないであげてください。`
+
+  /**
+   * レビュー: 肯定的な評価時の背景色。
+   */
+  public static positiveReviewBackgroundColor = 'cyan darken-2'
+  /**
+   * レビュー: 否定的な評価時の背景色。
+   */
+  public static negativeReviewBackgroundColor = 'red darken-2'
+
+  /**
+   * レビュー: 肯定的な評価時の文字色。
+   */
+  public static positiveReviewFontColor = 'cyan--text text--darken-2'
+  /**
+   * レビュー: 否定的な評価時の文字色。
+   */
+  public static negativeReviewFontColor = 'red--text text--darken-2'
 }

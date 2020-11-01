@@ -29,4 +29,11 @@ export default class DateTimeUtil {
     const dateTime = new Date(timestamp * (base !== undefined ? base : 1000))
     return `${dateTime.toLocaleDateString('ja-JP')}`
   }
+
+  /**
+   * 指定した分数を時間単位に変更。
+   */
+  public static convertTimeToHour(time: number) {
+    return time / 60
+  }
 }

@@ -1,18 +1,16 @@
 <template>
-  <v-card>
-    <v-card-subtitle class="caption">
-      {{ startDate }}〜 {{ endDate }}までの評価数推移
-    </v-card-subtitle>
+  <div class="mb-4 pa-2">
+    <div class="caption">{{ startDate }}〜 {{ endDate }}までの評価数推移</div>
 
-    <v-card-text>
+    <div>
       <!-- ヒストグラム -->
       <chart-bar
         :chart-data="chartData"
         :options="chartOption"
         :styles="chartStyles"
       />
-    </v-card-text>
-  </v-card>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">

@@ -37,15 +37,18 @@ export default class SteamFormatUtil {
     let regexp: RegExp = /\[h1\]/g
     result = text.replace(
       regexp,
-      `<div class="display-2 font-weight-bold text--primary text-decoration-overline mt-4 mb-2">`
+      `<div class="display-1 font-weight-black text--primary text-decoration-underline mt-4 mb-2">`
     )
     regexp = /\[h2\]/g
     result = result.replace(
       regexp,
-      `<div class="display-2 font-weight-bold mt-4 mb-2">`
+      `<div class="display-1 font-weight-black mt-4 mb-2">`
     )
     regexp = /\[h3\]/g
-    result = result.replace(regexp, `<div class="display-2 mt-4 mb-2">`)
+    result = result.replace(
+      regexp,
+      `<div class="display-1 font-weight-bold mt-4 mb-2">`
+    )
     regexp = /\[h4\]/g
     result = result.replace(regexp, `<div class="display-1 mt-4 mb-2">`)
     regexp = /\[h5\]/g
