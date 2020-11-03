@@ -29,7 +29,7 @@ import Component from 'nuxt-class-component'
 
 import ModalTemplate from '@/components/common/template/ModalTemplate.vue'
 
-import { dataModule } from '@/store/modules/dataModule'
+import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
 
 /**
  * 登録中のアプリIDを削除。
@@ -45,7 +45,7 @@ export default class ClearRegisteredAppId extends Vue {
    */
   private clearAppId() {
     // LocalStorageから情報をClear。
-    dataModule.clearAppIdList()
+    appIdDataModule.clearAppIdList()
   }
 }
 </script>

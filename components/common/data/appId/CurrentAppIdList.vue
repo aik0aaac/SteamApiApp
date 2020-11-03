@@ -17,7 +17,7 @@
 import Vue from 'vue'
 import Component from 'nuxt-class-component'
 
-import { dataModule } from '@/store/modules/dataModule'
+import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
 import { IAppId } from '~/store/modules/dataModule/types'
 
 /**
@@ -31,18 +31,18 @@ export default class CurrentAppIdList extends Vue {
    * アプリIDのリスト。
    */
   private get appIdList() {
-    return dataModule.appIdList
+    return appIdDataModule.appIdList
   }
 
   /**
    * 現在選択中のアプリID。
    */
   private get currentAppId() {
-    return dataModule.currentAppId
+    return appIdDataModule.currentAppId
   }
 
   private setCurrentAppId(item: IAppId) {
-    dataModule.setCurrentAppId(item)
+    appIdDataModule.setCurrentAppId(item)
   }
 }
 </script>

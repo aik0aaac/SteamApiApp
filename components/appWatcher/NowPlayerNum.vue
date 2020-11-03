@@ -21,7 +21,7 @@
 import { Component, Vue, Watch } from 'nuxt-property-decorator'
 import ApiWrapper from '@/components/common/api/ApiWrapper.vue'
 
-import { dataModule } from '@/store/modules/dataModule'
+import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
 import { appWatcherModule } from '@/store/modules/appWatcherModule'
 
 /**
@@ -40,7 +40,7 @@ export default class NowPlayerNum extends Vue {
 
   async fetch() {
     this.data = await appWatcherModule.getNumberOfCurrentPlayers(
-      dataModule.currentAppId.appId
+      appIdDataModule.currentAppId.appId
     )
   }
 }

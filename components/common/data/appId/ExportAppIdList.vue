@@ -27,7 +27,7 @@ import Component from 'nuxt-class-component'
 import ModalTemplate from '@/components/common/template/ModalTemplate.vue'
 import CopyClipBoardButton from '@/components/common/CopyClipBoardButton.vue'
 
-import { dataModule } from '@/store/modules/dataModule'
+import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
 
 /**
  * 登録中のアプリIDをエクスポート。。
@@ -42,6 +42,6 @@ export default class ExportAppIdList extends Vue {
   /**
    * アプリIDのリスト。
    */
-  private appIdList = dataModule.appIdList
+  private appIdList = appIdDataModule.appIdList
 }
 </script>

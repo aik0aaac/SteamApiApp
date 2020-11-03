@@ -8,3 +8,14 @@ export interface IAppId {
    */
   label: string
 }
+
+export interface IModId {
+  /**
+   * MOD ID。
+   */
+  modId: string
+  /**
+   * ゲーム名。
+   */
+  gameName: string
+}

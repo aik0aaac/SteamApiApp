@@ -27,7 +27,7 @@ import ApiWrapper from '@/components/common/api/ApiWrapper.vue'
 import AchivementList from '@/components/appWatcher/achivement/AchivementList.vue'
 
 import { appWatcherModule } from '@/store/modules/appWatcherModule'
-import { dataModule } from '@/store/modules/dataModule'
+import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
 import MathUtil from '@/utils/mathUtil'
 
 /**
@@ -51,12 +51,12 @@ export default class AchivementSummary extends Vue {
   private steamDbUrl = ''
 
   mounted() {
-    this.steamDbUrl = `https://steamdb.info/app/${dataModule.currentAppId.appId}/stats/`
+    this.steamDbUrl = `https://steamdb.info/app/${appIdDataModule.currentAppId.appId}/stats/`
   }
 
   async fetch() {
     const response = await appWatcherModule.getGlobalAchievementPercentagesForApp(
-      dataModule.currentAppId.appId
+      appIdDataModule.currentAppId.appId
     )
 
     // データが存在=実績データが存在するゲームであすれば格納

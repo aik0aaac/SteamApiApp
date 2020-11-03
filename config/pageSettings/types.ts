@@ -15,13 +15,13 @@ export interface PageSetting {
    */
   link: string
   /**
-   * パンくずリスト情報。
-   */
-  // breadcrumbs: Array<Breadcrumbs>
-  /**
    * ナビゲーションverに表示されるアイコン。
    */
   icon: string
+  /**
+   * パンくずリスト情報。
+   */
+  breadcrumbs: Array<Breadcrumbs>
 }
 
 export interface Breadcrumbs {

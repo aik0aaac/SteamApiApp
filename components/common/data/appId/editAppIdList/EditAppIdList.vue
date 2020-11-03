@@ -44,8 +44,8 @@ import Vue from 'vue'
 import Component from 'nuxt-class-component'
 
 import ModalTemplate from '@/components/common/template/ModalTemplate.vue'
-import ExportAppIdList from '@/components/common/data/ExportAppIdList.vue'
-import ImportAppIdList from '@/components/common/data/ImportAppIdList.vue'
+import ExportAppIdList from '@/components/common/data/appId/ExportAppIdList.vue'
+import ImportAppIdList from '@/components/common/data/appId/ImportAppIdList.vue'
 import AppIdList from './AppIdList.vue'
 import AddAppIdList from './AddAppIdList.vue'
 
