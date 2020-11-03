@@ -2,11 +2,11 @@ import { VuexModule, Module, getModule, Mutation } from 'vuex-module-decorators'
 import store from '~/store/store'
 
 import { IAppId } from '~/store/modules/dataModule/types'
-import DataLocalStorage from '~/data/localStorage/data'
+import AppIdDataLocalStorage from '~/data/localStorage/appIdData'
 
-const dataLocalStorage = new DataLocalStorage()
+const appIdDataLocalStorage = new AppIdDataLocalStorage()
 
-export interface IDataState {
+export interface IAppIdDataState {
   appIdList: Array<IAppId>
   currentAppId: IAppId
 }
@@ -15,14 +15,13 @@ export interface IDataState {
   namespaced: true,
   store,
   stateFactory: true,
-  name: 'data',
+  name: 'appIdData',
 })
-class DataModule extends VuexModule implements IDataState {
+class AppIdDataModule extends VuexModule implements IAppIdDataState {
   /**
    * アプリIDリストのprivate変数。
    */
-  private _appIdList: Array<IAppId> = dataLocalStorage.getAppIdList()
-
+  private _appIdList: Array<IAppId> = appIdDataLocalStorage.getAppIdList()
   /**
    * 現在選択中のアプリIDのprivate変数。
    */
@@ -44,7 +43,7 @@ class DataModule extends VuexModule implements IDataState {
       return false
     } else if (
       JSON.stringify(this._appIdList) ===
-      JSON.stringify(dataLocalStorage.isErrorLocalStorageData)
+      JSON.stringify(appIdDataLocalStorage.isErrorAppIdLocalStorageData)
     ) {
       return false
     }
@@ -60,7 +59,7 @@ class DataModule extends VuexModule implements IDataState {
     // アプリIDリストが存在しなければ新規作成
     if (
       JSON.stringify(this._appIdList) ===
-      JSON.stringify(dataLocalStorage.isErrorLocalStorageData)
+      JSON.stringify(appIdDataLocalStorage.isErrorAppIdLocalStorageData)
     ) {
       this._appIdList = [data]
     } else {
@@ -69,7 +68,7 @@ class DataModule extends VuexModule implements IDataState {
     }
 
     // LocalStorage上のデータを更新
-    dataLocalStorage.setAppId(data)
+    appIdDataLocalStorage.setAppId(data)
   }
 
   /**
@@ -90,7 +89,7 @@ class DataModule extends VuexModule implements IDataState {
     // 格納し直した値をセット
     this._appIdList = appIdList
     // LocalStorage上のデータを更新
-    dataLocalStorage.setAppIdList(appIdList)
+    appIdDataLocalStorage.setAppIdList(appIdList)
   }
 
   /**
@@ -121,9 +120,9 @@ class DataModule extends VuexModule implements IDataState {
   @Mutation
   public clearAppIdList(): void {
     // LocalStorage上のデータを更新
-    dataLocalStorage.clearAppIdList()
-    this._appIdList = dataLocalStorage.getAppIdList()
+    appIdDataLocalStorage.clearAppIdList()
+    this._appIdList = appIdDataLocalStorage.getAppIdList()
   }
 }
 
-export const dataModule = getModule(DataModule)
+export const appIdDataModule = getModule(AppIdDataModule)

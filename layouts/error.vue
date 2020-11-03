@@ -35,7 +35,7 @@
 </template>
 
 <script>
-// import ExportAppIdList from '@/components/common/data/ExportAppIdList.vue'
+// import ExportAppIdList from '@/components/common/data/appId/ExportAppIdList.vue'
 
 export default {
   layout: 'empty',

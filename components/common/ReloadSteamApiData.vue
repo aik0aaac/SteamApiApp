@@ -8,7 +8,7 @@
 import Vue from 'vue'
 import Component from 'nuxt-class-component'
 
-import { dataModule } from '@/store/modules/dataModule'
+import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
 import { IAppId } from '~/store/modules/dataModule/types'
 
 /**
@@ -20,16 +20,16 @@ import { IAppId } from '~/store/modules/dataModule/types'
 export default class ReloadSteamApiData extends Vue {
   private onClickHandler() {
     // 現在選択中のアプリIDを一度空にしてもう一度入れ直すことで、情報を更新
-    const tmp = dataModule.currentAppId
+    const tmp = appIdDataModule.currentAppId
     const emptyData: IAppId = {
       appId: '',
       label: '',
     }
 
     // 短時間でもアプリID画からの状態を作り出し、メインコンポーネントの;key="currentId"を変更検知させる
-    dataModule.setCurrentAppId(emptyData)
+    appIdDataModule.setCurrentAppId(emptyData)
     window.setTimeout(() => {
-      dataModule.setCurrentAppId(tmp)
+      appIdDataModule.setCurrentAppId(tmp)
     }, 100)
   }
 }

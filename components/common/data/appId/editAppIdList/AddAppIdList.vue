@@ -22,7 +22,7 @@
             :rules="appUrlRules"
             label="appUrl"
             clearable
-            hint="お気に入りのSteamアプリのURLを入力してください"
+            hint="お気に入りSteamアプリのURLを入力してください"
             persistent-hint
             required
           />
@@ -43,7 +43,7 @@
 import Vue from 'vue'
 import Component from 'nuxt-class-component'
 
-import { dataModule } from '@/store/modules/dataModule'
+import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
 
 import { IAppId } from '~/store/modules/dataModule/types'
 
@@ -73,7 +73,7 @@ export default class AddAppIdList extends Vue {
    */
   private appUrlRules = [
     (v: string | undefined | null) =>
-      !!v || 'お気に入りのSteamアプリのURLを入力してください',
+      !!v || 'お気に入りSteamアプリのURLを入力してください',
     (v: string) =>
       RegexpUtil.steamUrlToAppId.test(v) ||
       'SteamアプリのURLを入力してください',
@@ -95,7 +95,7 @@ export default class AddAppIdList extends Vue {
       appId: RegexpUtil.match(this.appUrl, RegexpUtil.steamUrlToAppId),
       label: this.label,
     }
-    dataModule.setAppId(data)
+    appIdDataModule.setAppId(data)
 
     // フォーム内容をClean
     this.clearForm()

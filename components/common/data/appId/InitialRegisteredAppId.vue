@@ -6,9 +6,9 @@
           <v-text-field
             v-model="appUrl"
             :rules="appUrlRules"
-            label="appUrl"
+            label="アプリURL"
             clearable
-            hint="お気に入りのSteamアプリのURLを入力してください"
+            hint="お気に入りSteamアプリのURLを入力してください"
             persistent-hint
             required
           />
@@ -28,9 +28,9 @@
 import Vue from 'vue'
 import Component from 'nuxt-class-component'
 
-import { dataModule } from '@/store/modules/dataModule'
+import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
 
-import ImportAppIdList from '@/components/common/data/ImportAppIdList.vue'
+import ImportAppIdList from '@/components/common/data/appId/ImportAppIdList.vue'
 
 import { IAppId } from '~/store/modules/dataModule/types'
 import Settings from '~/config/settings'
@@ -59,7 +59,7 @@ export default class InitialRegisteredAppId extends Vue {
    */
   private appUrlRules = [
     (v: string | undefined | null) =>
-      !!v || 'お気に入りのSteamアプリのURLを入力してください',
+      !!v || 'お気に入りSteamアプリのURLを入力してください',
     (v: string) =>
       RegexpUtil.steamUrlToAppId.test(v) ||
       'SteamアプリのURLを入力してください',
@@ -74,10 +74,10 @@ export default class InitialRegisteredAppId extends Vue {
       appId: RegexpUtil.match(this.appUrl, RegexpUtil.steamUrlToAppId),
       label: Settings.appIdInitializeLabel,
     }
-    dataModule.setAppId(data)
+    appIdDataModule.setAppId(data)
 
     // 現在選択中のアプリIDにもデータを登録
-    dataModule.setCurrentAppId(data)
+    appIdDataModule.setCurrentAppId(data)
   }
 }
 </script>

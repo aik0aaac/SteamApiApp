@@ -48,7 +48,7 @@ import ReviewHistogram from '@/components/review/reviewHistogram/index.vue'
 import ReviewCard from '@/components/review/reviewCard/index.vue'
 
 import { appWatcherModule } from '@/store/modules/appWatcherModule'
-import { dataModule } from '@/store/modules/dataModule'
+import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
 
 import Settings from '~/config/settings'
 
@@ -76,10 +76,10 @@ export default class ReviewSummary extends Vue {
 
   async fetch() {
     this.reviewHistogramData = await appWatcherModule.getReviewHistogram(
-      dataModule.currentAppId.appId
+      appIdDataModule.currentAppId.appId
     )
     this.reviewData = await appWatcherModule.getReviewForAppWatcher(
-      dataModule.currentAppId.appId
+      appIdDataModule.currentAppId.appId
     )
   }
 

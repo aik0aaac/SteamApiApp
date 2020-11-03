@@ -61,7 +61,7 @@ import { ValidationProvider } from 'vee-validate'
 
 import ModalTemplate from '@/components/common/template/ModalTemplate.vue'
 
-import { dataModule } from '@/store/modules/dataModule'
+import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
 
 /**
  * アプリID情報をエクスポート。
@@ -91,7 +91,7 @@ export default class ImportAppIdList extends Vue {
       return
     }
 
-    dataModule.setAppIdList(JSON.parse(this.importAppIdList))
+    appIdDataModule.setAppIdList(JSON.parse(this.importAppIdList))
   }
 }
 </script>

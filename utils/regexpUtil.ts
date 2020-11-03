@@ -25,11 +25,20 @@ export default class RegexpUtil {
    * SteamURLからAppIdを抽出する正規表現パターン。
    */
   public static steamUrlToAppId: RegExp = /https:\/\/store.steampowered.com\/app\/([0-9]+)\//
+  /**
+   * SteamURLからModIdを抽出する正規表現パターン。
+   * https://steamcommunity.com/sharedfiles/filedetails/?id=2224118463
+   */
+  public static steamUrlToModId: RegExp = /https:\/\/steamcommunity.com\/sharedfiles\/filedetails\/\?id=([0-9]+)/
 
   /**
    * SteamAppIdの正規表現パターン。
    */
   public static steamAppId: RegExp = /^[0-9]+$/
+  /**
+   * SteamModIdの正規表現パターン。
+   */
+  public static steamModId: RegExp = /^[0-9]+$/
 
   /**
    * SteamApiの正規表現パターン。

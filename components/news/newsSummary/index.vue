@@ -37,7 +37,7 @@ import ApiWrapper from '@/components/common/api/ApiWrapper.vue'
 import NewsCard from '@/components/news/newsCard/index.vue'
 
 import { appWatcherModule } from '@/store/modules/appWatcherModule'
-import { dataModule } from '@/store/modules/dataModule'
+import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
 
 /**
  * ニュース一覧。
@@ -61,7 +61,7 @@ export default class NewsSummary extends Vue {
 
   async fetch() {
     const response = await appWatcherModule.getNewsForApp(
-      dataModule.currentAppId.appId
+      appIdDataModule.currentAppId.appId
     )
 
     this.data = response.appnews.newsitems

@@ -36,7 +36,7 @@
 import Vue from 'vue'
 import Component from 'nuxt-class-component'
 
-import { dataModule } from '@/store/modules/dataModule'
+import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
 
 import { IAppId } from '~/store/modules/dataModule/types'
 
@@ -50,7 +50,7 @@ export default class AppIdList extends Vue {
   /**
    * アプリIDのリスト。
    */
-  private appIdList = dataModule.appIdList
+  private appIdList = appIdDataModule.appIdList
 
   /**
    * DataTableのヘッダー。
@@ -93,7 +93,7 @@ export default class AppIdList extends Vue {
    */
   private onClickSaveHandler() {
     // アプリIDデータをセット。
-    dataModule.setAppIdList(this.appIdList)
+    appIdDataModule.setAppIdList(this.appIdList)
   }
 
   /**
@@ -101,7 +101,7 @@ export default class AppIdList extends Vue {
    */
   private onClickRemoveHandler(data: IAppId) {
     this.appIdList = this.appIdList.filter((e) => e.appId !== data.appId)
-    dataModule.setAppIdList(this.appIdList)
+    appIdDataModule.setAppIdList(this.appIdList)
   }
 }
 </script>

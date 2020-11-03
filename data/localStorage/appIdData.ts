@@ -4,13 +4,13 @@ import BaseLocalStorage from './base'
 import { IAppId } from '~/store/modules/dataModule/types'
 
 /**
- * APP ID, MOD IDを管理するClass。
+ * APP IDを管理するClass。
  */
-export default class DataLocalStorage extends BaseLocalStorage {
+export default class AppIdDataLocalStorage extends BaseLocalStorage {
   /**
-   * データがNULLの時に返却されるデータ。
+   * APP IDデータがNULLの時に返却されるデータ。
    */
-  public isErrorLocalStorageData = [
+  public isErrorAppIdLocalStorageData: Array<IAppId> = [
     {
       appId: '',
       label: '',
@@ -28,6 +28,7 @@ export default class DataLocalStorage extends BaseLocalStorage {
    */
   public isRegisteredAppIdList(): boolean {
     const appIdList = this.getLocalStorage(this.appIdListKeyName)
+
     if (appIdList === null) {
       return false
     }
@@ -40,7 +41,7 @@ export default class DataLocalStorage extends BaseLocalStorage {
   public getAppIdList(): Array<IAppId> {
     // アプリIDリストが登録されていなければ空データを返却
     if (!this.isRegisteredAppIdList()) {
-      return this.isErrorLocalStorageData
+      return this.isErrorAppIdLocalStorageData
     }
 
     // LocalStorageからデータ取得
@@ -54,7 +55,7 @@ export default class DataLocalStorage extends BaseLocalStorage {
         // アプリIDでない書式であれば、エラーを吐き空文字を返す
         console.log(`SteamアプリIDではない文字列がLocalStorageにセットされています。
 一度「LocalStorageをクリア」してからご利用ください。`)
-        return this.isErrorLocalStorageData
+        return this.isErrorAppIdLocalStorageData
       }
     })
 
