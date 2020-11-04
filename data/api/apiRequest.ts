@@ -68,4 +68,11 @@ export default class ApiRequest {
   public getGlobalAchievementPercentagesForApp(appId: string): string {
     return `${this.steamApiBaseUrl}/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v2/?gameid=${appId}`
   }
+
+  /**
+   * 指定したSharedFileデータを取得するAPIURL。
+   */
+  public getaSharedFileData(): string {
+    return `${this.steamApiBaseUrl}/ISteamRemoteStorage/GetPublishedFileDetails/v1/`
+  }
 }

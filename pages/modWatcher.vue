@@ -8,12 +8,15 @@
 
       <!-- 登録中のMOD一覧 -->
       <v-container v-if="isRegisteredModIdList">
-        {{ modIdList }}
         <v-row>
-          <!-- TODO: 登録中のMOD ID編集欄 -->
-          <v-col cols="12" class="pt-0"> </v-col>
-          <!-- TODO: 登録中のMODリストカード一覧 -->
-          <v-col cols="12" sm="8" class="pt-0"> </v-col>
+          <!-- 登録中のMOD ID編集欄 -->
+          <v-col cols="12" class="pt-0">
+            <edit-mod-id-list />
+          </v-col>
+          <!-- 登録中のMODリストカード一覧 -->
+          <v-col cols="12" class="pt-0">
+            <mod-card-list />
+          </v-col>
         </v-row>
 
         <!-- TODO: 登録中のMOD ID削除ボタン -->
@@ -35,6 +38,8 @@ import { modIdDataModule } from '@/store/modules/dataModule/modIdDataModule'
 
 import PageTemplate from '~/components/common/template/PageTemplate.vue'
 import InitialRegisteredModId from '~/components/common/data/modId/InitialRegisteredModId.vue'
+import EditModIdList from '~/components/common/data/modId/editModIdList/index.vue'
+import ModCardList from '~/components/modWatcher/ModCardList.vue'
 
 // settings import
 import { pageSettings } from '~/config/pageSettings'
@@ -43,6 +48,8 @@ import { pageSettings } from '~/config/pageSettings'
   components: {
     PageTemplate,
     InitialRegisteredModId,
+    EditModIdList,
+    ModCardList,
   },
 })
 export default class ModWatcher extends Vue {
