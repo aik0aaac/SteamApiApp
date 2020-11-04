@@ -3,6 +3,7 @@
     open-button-text="インポート"
     open-button-icon="fas fa-upload"
     open-button-color="primary"
+    :open-button-outlined="true"
   >
     <template #main>
       <v-card>
