@@ -54,4 +54,9 @@ export default class Settings {
    * レビュー: 否定的な評価時の文字色。
    */
   public static negativeReviewFontColor = 'red--text text--darken-2'
+
+  /**
+   * MOD概要欄にて画面に表示させる文字数。
+   */
+  public static modSummaryDisplayContentsNum = 200
 }
