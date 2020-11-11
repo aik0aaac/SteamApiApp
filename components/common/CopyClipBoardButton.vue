@@ -13,32 +13,34 @@
     </v-btn>
 
     <!-- コピー成功時のSnackbar -->
-    <v-snackbar
-      v-model="copySuccess"
-      :timeout="5000"
-      color="success"
-      shaped
-      class="grey-text text--darken-1"
-    >
-      <v-icon x-small class="mx-1">fas fa-thumbs-up</v-icon>
-      クリップボードにコピーしました!
-    </v-snackbar>
+    <success-snackbar
+      :value="copySuccess"
+      text="クリップボードにコピーしました!"
+    />
 
     <!-- コピー失敗時のSnackbar -->
-    <v-snackbar v-model="copyError" :timeout="5000" color="error" shaped>
-      <v-icon x-small class="mx-1">fas fa-times-circle</v-icon>
-      クリップボードにコピー失敗しました。<br />画面をリロードしてやり直すか、直接範囲指定してコピーしてください。
-    </v-snackbar>
+    <error-snackbar
+      :value="copyError"
+      text="クリップボードにコピー失敗しました。画面をリロードしてやり直すか、直接範囲指定してコピーしてください。"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
+import SuccessSnackbar from '@/components/common/snackbar/SuccessSnackbar.vue'
+import ErrorSnackbar from '@/components/common/snackbar/ErrorSnackbar.vue'
+
 /**
  * クリップボードにコピーするボタン。。
  */
-@Component({})
+@Component({
+  components: {
+    SuccessSnackbar,
+    ErrorSnackbar,
+  },
+})
 export default class CopyClipBoardButton extends Vue {
   /**
    * クリップボードにコピーするテキスト。

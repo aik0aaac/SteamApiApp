@@ -36,12 +36,17 @@
         </v-col>
       </v-row>
     </v-container>
+
+    <!-- 追加時のToast -->
+    <success-snackbar :value="addSuccess" text="追加しました!" />
   </v-form>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'nuxt-class-component'
+
+import SuccessSnackbar from '@/components/common/snackbar/SuccessSnackbar.vue'
 
 import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
 
@@ -53,7 +58,9 @@ import RegexpUtil from '~/utils/regexpUtil'
  * 登録中のアプリIDを変更。
  */
 @Component({
-  components: {},
+  components: {
+    SuccessSnackbar,
+  },
 })
 export default class AddAppIdList extends Vue {
   /**
@@ -99,6 +106,14 @@ export default class AddAppIdList extends Vue {
 
     // フォーム内容をClean
     this.clearForm()
+
+    // 追加時Snackbarを発火
+    this.addSuccess = true
   }
+
+  /**
+   * 追加時Snackbar。
+   */
+  private addSuccess = false
 }
 </script>

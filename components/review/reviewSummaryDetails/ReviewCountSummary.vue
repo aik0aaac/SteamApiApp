@@ -4,15 +4,15 @@
       <!-- レビュー総数 -->
       <div class="d-inline mr-4">全{{ data.total_reviews }}件のレビュー:</div>
       <!-- 肯定的レビュー数 -->
-      <div :class="`d-inline caption mr-2 ${positiveReviewFontColor}`">
-        <v-icon :class="`${positiveReviewFontColor}`" x-small
+      <div class="d-inline caption mr-2 positive-review-font-color">
+        <v-icon class="positive-review-font-color" x-small
           >fas fa-thumbs-up</v-icon
         >
         {{ data.total_positive }}件 ({{ positiveReviewPercentage }}%)
       </div>
       <!-- 否定的レビュー数 -->
-      <div :class="`d-inline caption mr-2 ${negativeReviewFontColor}`">
-        <v-icon :class="`${negativeReviewFontColor}`" x-small
+      <div class="d-inline caption mr-2 negative-review-font-color">
+        <v-icon class="negative-review-font-color" x-small
           >fas fa-thumbs-down</v-icon
         >
         {{ data.total_negative }}件 ({{ negativeReviewPercentage }}%)
@@ -21,18 +21,16 @@
 
     <!-- レビュー比率図 -->
     <v-col :cols="positiveReviewRatio" class="pr-0 py-1">
-      <div :class="`${positiveReviewBackgroundColor} body-2 pa-2`"></div>
+      <div class="body-2 pa-2 positive-review-bg"></div>
     </v-col>
     <v-col :cols="negativeReviewRatio" class="pl-0 py-1">
-      <div :class="`${negativeReviewBackgroundColor} body-2 pa-2`"></div>
+      <div class="body-2 pa-2 negative-review-bg"></div>
     </v-col>
   </v-row>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-
-import Settings from '@/config/settings'
 
 import MathUtil from '@/utils/mathUtil'
 
@@ -48,24 +46,6 @@ export default class ReviewCountSummary extends Vue {
    */
   @Prop({ default: {} })
   private data: any
-
-  /**
-   * 肯定的な評価時の背景色。
-   */
-  private positiveReviewBackgroundColor = Settings.positiveReviewBackgroundColor
-  /**
-   * 否定的な評価時の背景色。
-   */
-  private negativeReviewBackgroundColor = Settings.negativeReviewBackgroundColor
-
-  /**
-   * 肯定的な評価時の文字色。
-   */
-  private positiveReviewFontColor = Settings.positiveReviewFontColor
-  /**
-   * 否定的な評価時の文字色。
-   */
-  private negativeReviewFontColor = Settings.negativeReviewFontColor
 
   /**
    * 肯定的な評価のパーセンテージ。
@@ -104,3 +84,14 @@ export default class ReviewCountSummary extends Vue {
   }
 }
 </script>
+
+<style lang="sass" scoped>
+.positive-review-bg
+  background-color: $positive-review-color
+.negative-review-bg
+  background-color: $negative-review-color
+.positive-review-font-color
+  color: $positive-review-color
+.negative-review-font-color
+  color: $negative-review-color
+</style>
