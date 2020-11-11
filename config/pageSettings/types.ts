@@ -39,3 +39,30 @@ export interface Breadcrumbs {
    */
   href: string
 }
+
+/**
+ * TOPページのカテゴリ情報。
+ */
+export interface ICategory {
+  /**
+   * カテゴリ名。
+   */
+  name: string
+  /**
+   * アイコン。
+   */
+  icon: string
+  /**
+   * 説明。
+   * ※HTMLタグも使用可能
+   */
+  description: string
+  /**
+   * リンク。
+   */
+  link: string
+  /**
+   * 未実装コンテンツかどうか。
+   */
+  isNotAvaliable: boolean
+}

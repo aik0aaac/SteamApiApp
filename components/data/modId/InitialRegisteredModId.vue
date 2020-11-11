@@ -2,21 +2,7 @@
   <v-form v-model="formValid">
     <v-container>
       <v-row>
-        <v-col cols="12">
-          <div class="headline">MODを追加</div>
-        </v-col>
-        <!-- 表示名 -->
-        <v-col cols="12" sm="6">
-          <v-text-field
-            v-model="gameName"
-            label="ゲーム名"
-            clearable
-            persistent-hint
-            required
-          />
-        </v-col>
-        <!-- MODURL -->
-        <v-col cols="12" sm="6">
+        <v-col cols="12" md="12">
           <v-text-field
             v-model="modUrl"
             :rules="modUrlRules"
@@ -26,13 +12,21 @@
             persistent-hint
             required
           />
+          <v-text-field
+            v-model="gameName"
+            label="ゲーム名"
+            clearable
+            hint="MODのゲーム名を入力してください"
+            persistent-hint
+            required
+          />
         </v-col>
-        <!-- 追加ボタン -->
         <v-col cols="12" md="12">
-          <v-btn color="primary" block @click="onClickAddHandler">
-            <v-icon x-small class="mr-2">fas fa-plus</v-icon>
-            追加
-          </v-btn>
+          <v-btn color="primary" block @click="onclickHandler"> 登録 </v-btn>
+        </v-col>
+        <v-col cols="12" md="12">
+          <!-- TODO: MOD IDインポート欄 -->
+          <!-- <import-app-id-list /> -->
         </v-col>
       </v-row>
     </v-container>
@@ -45,17 +39,21 @@ import Component from 'nuxt-class-component'
 
 import { modIdDataModule } from '@/store/modules/dataModule/modIdDataModule'
 
+// import ImportAppIdList from '@/components/data/modId/ImportAppIdList.vue'
+
 import { IModId } from '~/store/modules/dataModule/types'
 
 import RegexpUtil from '~/utils/regexpUtil'
 
 /**
- * 登録中のMODIDを変更。
+ * MOD ID初期登録。
  */
 @Component({
-  components: {},
+  components: {
+    // ImportAppIdList,
+  },
 })
-export default class AddModIdList extends Vue {
+export default class InitialRegisteredModId extends Vue {
   /**
    * フォームバリデーション状態。
    */
@@ -79,25 +77,15 @@ export default class AddModIdList extends Vue {
   ]
 
   /**
-   * フォーム内容をClearする。
+   * 登録ボタン押下時のハンドラー。
    */
-  private clearForm() {
-    this.modUrl = ''
-    this.gameName = ''
-  }
-
-  /**
-   * 追加ボタン押下時のハンドラー。
-   */
-  private onClickAddHandler() {
+  private onclickHandler() {
+    // MOD IDリストにデータを登録
     const data: IModId = {
       modId: RegexpUtil.match(this.modUrl, RegexpUtil.steamUrlToModId),
       gameName: this.gameName,
     }
     modIdDataModule.setModId(data)
-
-    // フォーム内容をClean
-    this.clearForm()
   }
 }
 </script>

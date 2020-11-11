@@ -37,8 +37,8 @@ import { Vue, Component } from 'vue-property-decorator'
 import { modIdDataModule } from '@/store/modules/dataModule/modIdDataModule'
 
 import PageTemplate from '~/components/common/template/PageTemplate.vue'
-import InitialRegisteredModId from '~/components/common/data/modId/InitialRegisteredModId.vue'
-import EditModIdList from '~/components/common/data/modId/editModIdList/index.vue'
+import InitialRegisteredModId from '~/components/data/modId/InitialRegisteredModId.vue'
+import EditModIdList from '~/components/data/modId/editModIdList/index.vue'
 import ModCardList from '~/components/modWatcher/ModCardList.vue'
 
 // settings import

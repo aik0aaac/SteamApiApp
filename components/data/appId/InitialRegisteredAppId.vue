@@ -30,7 +30,7 @@ import Component from 'nuxt-class-component'
 
 import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
 
-import ImportAppIdList from '@/components/common/data/appId/ImportAppIdList.vue'
+import ImportAppIdList from '@/components/data/appId/ImportAppIdList.vue'
 
 import { IAppId } from '~/store/modules/dataModule/types'
 import Settings from '~/config/settings'

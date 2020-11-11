@@ -38,24 +38,6 @@ export default class Settings {
   public static izimeraretaMessage = `…もし偶発的なものでなく故意的なものであれば、あまり本アプリをいじめないであげてください。`
 
   /**
-   * レビュー: 肯定的な評価時の背景色。
-   */
-  public static positiveReviewBackgroundColor = 'cyan darken-2'
-  /**
-   * レビュー: 否定的な評価時の背景色。
-   */
-  public static negativeReviewBackgroundColor = 'red darken-2'
-
-  /**
-   * レビュー: 肯定的な評価時の文字色。
-   */
-  public static positiveReviewFontColor = 'cyan--text text--darken-2'
-  /**
-   * レビュー: 否定的な評価時の文字色。
-   */
-  public static negativeReviewFontColor = 'red--text text--darken-2'
-
-  /**
    * MOD概要欄にて画面に表示させる文字数。
    */
   public static modSummaryDisplayContentsNum = 200

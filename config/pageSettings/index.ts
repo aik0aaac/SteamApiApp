@@ -52,8 +52,48 @@ const modWatcher: PageSetting = {
   ],
 }
 
+const reviewWatcher: PageSetting = {
+  title: 'Review Watcher',
+  subTitle: 'お気に入りアプリのレビューを見る',
+  link: '/reviewWatcher',
+  icon: 'far fa-comments',
+  breadcrumbs: [
+    {
+      text: 'TOP',
+      disabled: false,
+      href: '/',
+    },
+    {
+      text: 'Review Watcher',
+      disabled: true,
+      href: '/',
+    },
+  ],
+}
+
+const newsWatcher: PageSetting = {
+  title: 'News Watcher',
+  subTitle: 'お気に入りアプリのニュースを見る',
+  link: '/newsWatcher',
+  icon: 'far fa-newspaper',
+  breadcrumbs: [
+    {
+      text: 'TOP',
+      disabled: false,
+      href: '/',
+    },
+    {
+      text: 'News Watcher',
+      disabled: true,
+      href: '/',
+    },
+  ],
+}
+
 export const pageSettings = {
   top,
   appWatcher,
   modWatcher,
+  reviewWatcher,
+  newsWatcher,
 }
