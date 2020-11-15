@@ -24,8 +24,8 @@
           <v-col cols="12" class="pt-0"> </v-col>
         </v-row>
 
-        <!-- TODO: API情報更新ボタン -->
-        <!-- <reload-steam-api-data /> -->
+        <!-- API情報更新ボタン -->
+        <reload-steam-api-data />
       </v-container>
     </template>
   </page-template>
@@ -36,6 +36,7 @@ import { Vue, Component } from 'vue-property-decorator'
 
 import { modIdDataModule } from '@/store/modules/dataModule/modIdDataModule'
 
+import ReloadSteamApiData from '@/components/data/modId/ReloadSteamApiData.vue'
 import PageTemplate from '~/components/common/template/PageTemplate.vue'
 import InitialRegisteredModId from '~/components/data/modId/InitialRegisteredModId.vue'
 import EditModIdList from '~/components/data/modId/editModIdList/index.vue'
@@ -50,6 +51,7 @@ import { pageSettings } from '~/config/pageSettings'
     InitialRegisteredModId,
     EditModIdList,
     ModCardList,
+    ReloadSteamApiData,
   },
 })
 export default class ModWatcher extends Vue {

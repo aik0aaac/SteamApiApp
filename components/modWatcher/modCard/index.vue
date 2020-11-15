@@ -41,10 +41,8 @@
     </v-card-actions>
 
     <mod-ban-info :data="data" />
-    <div class="pt-4 pb-2 px-4 caption grey--text text--darken-1">
-      ※下記の値が「0」でないMODがある場合、そのMOD情報をそっと開発者に教えていただけると助かります…<br />
-      visibility:{{ data.visibility }}<br />
-    </div>
+
+    <mod-unknown-data :data="data" />
   </v-card>
 </template>
 
@@ -58,6 +56,7 @@ import ModDescription from './ModDescription.vue'
 import ModExternalReactions from './ModExternalReactions.vue'
 import ModTags from './ModTags.vue'
 import ModBanInfo from './ModBanInfo.vue'
+import ModUnknownData from './ModUnknownData.vue'
 
 /**
  * MODカード。
@@ -71,6 +70,7 @@ import ModBanInfo from './ModBanInfo.vue'
     ModBanInfo,
     ModTags,
     ModDetails,
+    ModUnknownData,
   },
 })
 export default class ModCard extends Vue {

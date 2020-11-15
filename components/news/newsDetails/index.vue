@@ -17,6 +17,12 @@
         </v-card-subtitle>
 
         <v-card-text>
+          <translate-button
+            :text="data.contents"
+            color="primary"
+            class="mb-4"
+          />
+
           <!-- 内容 -->
           <news-contents :data="data" />
 
@@ -42,6 +48,7 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 import ModalTemplate from '@/components/common/template/ModalTemplate.vue'
+import TranslateButton from '@/components/common/TranslateButton.vue'
 import NewsTitle from '../newsCard/NewsTitle.vue'
 import NewsSubDetails from '../newsCard/NewsSubDetails.vue'
 import NewsContents from '../newsCard/NewsContents.vue'
@@ -54,6 +61,7 @@ import NewsLink from '../newsCard/NewsLink.vue'
 @Component({
   components: {
     ModalTemplate,
+    TranslateButton,
     NewsTitle,
     NewsSubDetails,
     NewsContents,

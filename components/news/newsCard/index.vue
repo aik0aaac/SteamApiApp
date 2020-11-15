@@ -18,14 +18,18 @@
     </v-card-text>
 
     <!-- アクションボタン -->
-    <v-card-actions class="mt-2">
+    <v-card-actions class="mt-0">
       <v-row>
+        <!-- ニュース詳細 -->
         <v-col cols="12" class="pb-0">
-          <!-- ニュース詳細 -->
           <news-details :data="data" />
         </v-col>
-        <v-col cols="12">
-          <!-- サイトで見る -->
+        <!-- Google翻訳ボタン -->
+        <v-col cols="12" class="pb-0">
+          <translate-button :text="data.contents" :outlined="true" />
+        </v-col>
+        <!-- サイトで見る -->
+        <v-col cols="12" class="pb-0">
           <news-link :data="data" />
         </v-col>
       </v-row>
@@ -37,6 +41,7 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 import NewsDetails from '@/components/news/newsDetails/index.vue'
+import TranslateButton from '@/components/common/TranslateButton.vue'
 import NewsTitle from './NewsTitle.vue'
 import NewsSubDetails from './NewsSubDetails.vue'
 import NewsContents from './NewsContents.vue'
@@ -54,6 +59,7 @@ import NewsLink from './NewsLink.vue'
     NewsTags,
     NewsLink,
     NewsDetails,
+    TranslateButton,
   },
 })
 export default class NewsCard extends Vue {
