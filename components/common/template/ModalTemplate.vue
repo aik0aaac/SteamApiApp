@@ -4,14 +4,19 @@
     <template v-slot:activator="{ on, attrs }">
       <v-btn
         :color="openButtonColor"
-        block
         :outlined="openButtonOutlined"
+        :icon="openButtonIconed"
+        :block="!openButtonIconed"
         v-bind="attrs"
         v-on="on"
       >
-        <v-icon v-if="openButtonIcon !== ''" x-small class="mr-2">{{
-          openButtonIcon
-        }}</v-icon>
+        <v-icon
+          v-if="openButtonIcon !== ''"
+          :x-small="!openButtonIconed"
+          :small="openButtonIconed"
+          class="mr-2"
+          >{{ openButtonIcon }}</v-icon
+        >
         {{ openButtonText }}
       </v-btn>
     </template>
@@ -56,6 +61,12 @@ export default class ModalTemplate extends Vue {
   private openButtonOutlined?: boolean
 
   /**
+   * ダイアログを開くボタン: icon化するかどうか。
+   */
+  @Prop({ default: false })
+  private openButtonIconed?: boolean
+
+  /**
    * ダイアログを開くボタン: ボタンの色。
    */
   @Prop({ default: 'primary' })
@@ -70,7 +81,7 @@ export default class ModalTemplate extends Vue {
 
 <style scoped>
 .close-button {
-  position: fixed;
+  position: fixed !important;
   top: 0;
   right: 0;
   width: auto;

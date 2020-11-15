@@ -1,5 +1,4 @@
 <template>
-  <!-- 追加時のToast -->
   <v-snackbar :value="value" color="success" :timeout="2000" fixed shaped>
     {{ text }}
   </v-snackbar>

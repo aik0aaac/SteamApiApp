@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card outlined>
     <v-card-title>
       {{ data.name }}
       <span v-if="data.isNotAvaliable" class="ml-4 body-2">

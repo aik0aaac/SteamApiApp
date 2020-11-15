@@ -22,8 +22,15 @@
 
     <!-- 上部メニューバー -->
     <v-app-bar fixed app>
+      <!-- サイドメニュー展開ボタン -->
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <!-- アプリタイトル -->
       <v-toolbar-title v-text="title" />
+
+      <v-spacer></v-spacer>
+
+      <!-- Q&Aコーナー -->
+      <q-a />
     </v-app-bar>
 
     <!-- メインコンテンツ部分 -->
@@ -35,7 +42,7 @@
 
     <!-- フッター -->
     <v-footer app>
-      <span>@aik0aaat</span>
+      <footer-contents />
     </v-footer>
   </v-app>
 </template>
@@ -43,10 +50,18 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 
+import QA from '@/components/qa/index.vue'
+import FooterContents from '@/components/common/FooterContents.vue'
+
 import Settings from '~/config/settings'
 import { pageSettings } from '~/config/pageSettings'
 
-@Component
+@Component({
+  components: {
+    QA,
+    FooterContents,
+  },
+})
 export default class DefaultTemplate extends Vue {
   drawer = false
   items = pageSettings

@@ -80,7 +80,7 @@ import NowPlayerNum from '~/components/appWatcher/NowPlayerNum.vue'
 import NewsSummary from '~/components/news/newsSummary/index.vue'
 import AchivementSummary from '~/components/appWatcher/achivement/AchivementSummary.vue'
 import ClearRegisteredAppId from '~/components/appWatcher/ClearRegisteredAppId.vue'
-import ReloadSteamApiData from '~/components/common/ReloadSteamApiData.vue'
+import ReloadSteamApiData from '~/components/data/appId/ReloadSteamApiData.vue'
 
 // settings import
 import { pageSettings } from '~/config/pageSettings'
