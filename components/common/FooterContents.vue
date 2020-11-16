@@ -27,3 +27,4 @@ import { Vue, Component } from 'vue-property-decorator'
   components: {},
 })
 export default class FooterContents extends Vue {}
+</script>
