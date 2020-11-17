@@ -36,6 +36,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { getReviewForAppWatcherItem } from '~/interface/api/getReviewForAppWatcher'
 
 /**
  * レビューサブ情報。
@@ -48,6 +49,6 @@ export default class ReviewSummarySub extends Vue {
    * レビューデータ。
    */
   @Prop({ default: {} })
-  private data: any
+  private data?: getReviewForAppWatcherItem
 }
 </script>

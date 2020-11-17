@@ -11,6 +11,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { getPublishedFileDetailsItem } from '~/interface/api/getPublishedFileDetails'
 
 /**
  * 開発者が何の情報を指しているか不明な情報。
@@ -20,9 +21,9 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 })
 export default class ModUnknownData extends Vue {
   /**
-   * レビューデータ。
+   * MODデータ。
    */
   @Prop({ default: {} })
-  private data: any
+  private data?: getPublishedFileDetailsItem
 }
 </script>

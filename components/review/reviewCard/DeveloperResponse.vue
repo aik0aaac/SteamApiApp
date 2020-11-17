@@ -20,6 +20,7 @@ import SteamFormatContents from '@/components/common/steamFormatContents/SteamFo
 import DateTimeUtil from '@/utils/dateTimeUtil'
 
 import Settings from '@/config/settings'
+import { getReviewForAppWatcherItem } from '~/interface/api/getReviewForAppWatcher'
 
 /**
  * レビュー内容。
@@ -31,10 +32,10 @@ import Settings from '@/config/settings'
 })
 export default class DeveloperResponse extends Vue {
   /**
-   * ニュースデータ。
+   * レビューデータ。
    */
   @Prop({ default: {} })
-  private data: any
+  private data?: getReviewForAppWatcherItem
 
   /**
    * 概要モード。

@@ -25,6 +25,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { getReviewForAppWatcherSummary } from '~/interface/api/getReviewForAppWatcher'
 
 /**
  * ニュースサマリ概要。
@@ -37,17 +38,19 @@ export default class ReviewEvaluationSummary extends Vue {
    * ニュース概要データ。
    */
   @Prop({ default: {} })
-  private data: any
+  private data?: getReviewForAppWatcherSummary
 
   /**
    * レビュースコア説明を日本語に翻訳。
    */
   private get localeReviewScoreDescJapanese() {
-    switch (this.data.review_score_desc) {
+    // eslint-disable-next-line camelcase
+    switch (this.data?.review_score_desc) {
       case 'Very Positive':
         return '非常に好評'
       default:
-        return this.data.review_score_desc
+        // eslint-disable-next-line camelcase
+        return this.data?.review_score_desc
     }
   }
 }

@@ -9,19 +9,20 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 import DateTimeUtil from '@/utils/dateTimeUtil'
+import { getPublishedFileDetailsItem } from '~/interface/api/getPublishedFileDetails'
 
 /**
- * レビュワー情報。
+ * MOD作成日、更新日情報。
  */
 @Component({
   components: {},
 })
 export default class ModDate extends Vue {
   /**
-   * レビューデータ。
+   * MODデータ。
    */
   @Prop({ default: {} })
-  private data: any
+  private data?: getPublishedFileDetailsItem
 
   /**
    * 指定したTimeStampを日付&時間に変更。

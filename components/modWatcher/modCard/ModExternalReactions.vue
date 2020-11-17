@@ -14,18 +14,19 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { getPublishedFileDetailsItem } from '~/interface/api/getPublishedFileDetails'
 
 /**
- * レビュワー情報。
+ * MOD補足情報。
  */
 @Component({
   components: {},
 })
 export default class ModExternalReactions extends Vue {
   /**
-   * レビューデータ。
+   * MODデータ。
    */
   @Prop({ default: {} })
-  private data: any
+  private data?: getPublishedFileDetailsItem
 }
 </script>

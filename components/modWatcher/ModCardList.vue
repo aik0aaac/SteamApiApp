@@ -28,7 +28,9 @@ import ModCard from '@/components/modWatcher/modCard/index.vue'
 
 import { modIdDataModule } from '@/store/modules/dataModule/modIdDataModule'
 import { modWatcherModule } from '@/store/modules/modWatcherModule'
-import { IModId } from '~/store/modules/dataModule/types'
+import { IModId } from '@/interface/dataModule'
+import { IModWatcherData } from '@/interface/mod'
+import { getPublishedFileDetailsItem } from '~/interface/api/getPublishedFileDetails'
 
 /**
  * 現在プレイ中の人数。
@@ -50,7 +52,7 @@ export default class ModCardList extends Vue {
   /**
    * APIデータを格納。
    */
-  private data: Array<any> = []
+  private data: Array<IModWatcherData> = []
 
   async fetch() {
     // APIデータを取得
@@ -59,17 +61,21 @@ export default class ModCardList extends Vue {
     )
 
     // APIデータを加工
-    rawResponse.publishedfiledetails.forEach((e: any) => {
-      const modId = modIdDataModule.modIdList.find(
-        (i: IModId) => i.modId === e.publishedfileid
-      )
-      // ゲーム名も一緒にデータとして格納
-      const data = {
-        gameName: modId?.gameName,
-        apiData: e,
+    rawResponse.publishedfiledetails.forEach(
+      (e: getPublishedFileDetailsItem) => {
+        // MOD IDデータと実際に取得したAPIデータをマッピング
+        // ※1つ1つのMOD IDに対しリクエストを送るのではなく、まとめて全てのMOD IDに対してリクエストを送付しているのでマッピングする必要がある
+        const modId = modIdDataModule.modIdList.find(
+          (i: IModId) => i.modId === e.publishedfileid
+        )
+        // ゲーム名も一緒にデータとして格納
+        const data: IModWatcherData = {
+          gameName: modId?.gameName as string,
+          apiData: e,
+        }
+        this.data.push(data)
       }
-      this.data.push(data)
-    })
+    )
   }
 }
 </script>

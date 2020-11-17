@@ -40,6 +40,7 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 import ModalTemplate from '@/components/common/template/ModalTemplate.vue'
+import { getNewsForAppItem } from '~/interface/api/getNewsForApp'
 
 /**
  * ニュース情報: リンク。
@@ -54,6 +55,6 @@ export default class NewsLink extends Vue {
    * ニュースデータ。
    */
   @Prop({ default: {} })
-  private data: any
+  private data?: getNewsForAppItem
 }
 </script>

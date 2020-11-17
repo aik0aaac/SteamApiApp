@@ -18,7 +18,7 @@ import Vue from 'vue'
 import Component from 'nuxt-class-component'
 
 import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
-import { IAppId } from '~/store/modules/dataModule/types'
+import { IAppId } from '@/interface/dataModule'
 
 /**
  * アプリID表示/選択中のアプリIDを変更。

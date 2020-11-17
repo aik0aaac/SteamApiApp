@@ -62,6 +62,7 @@ import ModExternalReactions from '../modCard/ModExternalReactions.vue'
 import ModTags from '../modCard/ModTags.vue'
 import ModBanInfo from '../modCard/ModBanInfo.vue'
 import ModUnknownData from '../modCard/ModUnknownData.vue'
+import { getPublishedFileDetailsItem } from '~/interface/api/getPublishedFileDetails'
 
 /**
  * MODカード。
@@ -83,7 +84,7 @@ export default class ModDetails extends Vue {
    * MODデータ。
    */
   @Prop({ default: {} })
-  private data: any
+  private data?: getPublishedFileDetailsItem
 
   /**
    * ゲーム名。

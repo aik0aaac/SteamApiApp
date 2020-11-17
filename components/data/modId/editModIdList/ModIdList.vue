@@ -39,7 +39,7 @@ import Component from 'nuxt-class-component'
 
 import { modIdDataModule } from '@/store/modules/dataModule/modIdDataModule'
 
-import { IModId } from '~/store/modules/dataModule/types'
+import { IModId } from '@/interface/dataModule'
 
 /**
  * 登録中のMOD IDを変更。

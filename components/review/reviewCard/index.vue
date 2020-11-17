@@ -50,6 +50,7 @@ import ReviewEvaluation from './ReviewEvaluation.vue'
 import ReviewSummarySub from './ReviewSummarySub.vue'
 import ReviewContents from './ReviewContents.vue'
 import DeveloperResponse from './DeveloperResponse.vue'
+import { getReviewForAppWatcherItem } from '~/interface/api/getReviewForAppWatcher'
 
 /**
  * ニュース概要。
@@ -71,6 +72,6 @@ export default class NewsCard extends Vue {
    * レビューデータ。
    */
   @Prop({ default: {} })
-  private data: any
+  private data?: getReviewForAppWatcherItem
 }
 </script>

@@ -50,7 +50,7 @@ import SuccessSnackbar from '@/components/common/snackbar/SuccessSnackbar.vue'
 
 import { modIdDataModule } from '@/store/modules/dataModule/modIdDataModule'
 
-import { IModId } from '~/store/modules/dataModule/types'
+import { IModId } from '@/interface/dataModule'
 
 import RegexpUtil from '~/utils/regexpUtil'
 

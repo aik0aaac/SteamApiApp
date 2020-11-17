@@ -38,6 +38,7 @@ import NewsCard from '@/components/news/newsCard/index.vue'
 
 import { appWatcherModule } from '@/store/modules/appWatcherModule'
 import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
+import { getNewsForAppItem } from '~/interface/api/getNewsForApp'
 
 /**
  * ニュース一覧。
@@ -52,20 +53,22 @@ export default class NewsSummary extends Vue {
   /**
    * APIデータを格納。
    */
-  private data: any = null
+  private data: Array<getNewsForAppItem> | null = null
 
   /**
    * ニュース数。
    */
-  private newsCount = null
+  private newsCount: number = 0
 
   async fetch() {
     const response = await appWatcherModule.getNewsForApp(
       appIdDataModule.currentAppId.appId
     )
 
-    this.data = response.appnews.newsitems
-    this.newsCount = response.appnews.count
+    // ニュース情報を格納
+    this.data = response.newsitems
+    // ニュース合計数を格納
+    this.newsCount = response.count
   }
 }
 </script>

@@ -23,6 +23,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import MathUtil from '@/utils/mathUtil'
+import { getReviewForAppWatcherItem } from '~/interface/api/getReviewForAppWatcher'
 
 /**
  * レビュワー情報。
@@ -35,7 +36,7 @@ export default class ReviewEvaluation extends Vue {
    * レビューデータ。
    */
   @Prop({ default: {} })
-  private data: any
+  private data?: getReviewForAppWatcherItem
 
   /**
    * 指定した数値を%に変換(小数点第2位以降を切り上げ)。

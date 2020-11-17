@@ -23,14 +23,6 @@
 
     <!-- モーダル内容 -->
     <slot name="main"></slot>
-
-    <!-- 閉じるボタン -->
-    <v-icon
-      x-large
-      class="grey--text text--lighten-1 close-button pa-6"
-      @click="dialog = false"
-      >fas fa-times</v-icon
-    >
   </v-dialog>
 </template>
 
@@ -78,13 +70,3 @@ export default class ModalTemplate extends Vue {
   private dialog = false
 }
 </script>
-
-<style scoped>
-.close-button {
-  position: fixed !important;
-  top: 0;
-  right: 0;
-  width: auto;
-  transition: 0.3s;
-}
-</style>

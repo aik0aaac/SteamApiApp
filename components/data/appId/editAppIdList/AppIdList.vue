@@ -38,7 +38,7 @@ import Component from 'nuxt-class-component'
 
 import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
 
-import { IAppId } from '~/store/modules/dataModule/types'
+import { IAppId } from '@/interface/dataModule'
 
 /**
  * 登録中のアプリIDを変更。

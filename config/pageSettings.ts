@@ -1,4 +1,4 @@
-import { PageSetting } from './types'
+import { PageSetting } from '@/interface/pageSettings'
 
 const top: PageSetting = {
   title: 'TOP',
@@ -16,7 +16,7 @@ const top: PageSetting = {
 
 const appWatcher: PageSetting = {
   title: 'APP Watcher',
-  subTitle: 'お気に入りアプリの今を知る',
+  subTitle: 'お気に入りゲームを見る',
   link: '/appWatcher',
   icon: 'far fa-eye',
   breadcrumbs: [
@@ -35,7 +35,7 @@ const appWatcher: PageSetting = {
 
 const modWatcher: PageSetting = {
   title: 'MOD Watcher',
-  subTitle: 'お気に入りMODの今を知る',
+  subTitle: 'お気に入りModを見る',
   link: '/modWatcher',
   icon: 'fas fa-cubes',
   breadcrumbs: [
@@ -54,7 +54,7 @@ const modWatcher: PageSetting = {
 
 const reviewWatcher: PageSetting = {
   title: 'Review Watcher',
-  subTitle: 'お気に入りアプリのレビューを見る',
+  subTitle: 'お気に入りゲームのレビューを見る',
   link: '/reviewWatcher',
   icon: 'far fa-comments',
   breadcrumbs: [
@@ -73,7 +73,7 @@ const reviewWatcher: PageSetting = {
 
 const newsWatcher: PageSetting = {
   title: 'News Watcher',
-  subTitle: 'お気に入りアプリのニュースを見る',
+  subTitle: 'お気に入りゲームのニュースを見る',
   link: '/newsWatcher',
   icon: 'far fa-newspaper',
   breadcrumbs: [

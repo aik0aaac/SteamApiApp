@@ -24,7 +24,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
-import { ICategory } from '~/config/pageSettings/types'
+import { ICategory } from '@/interface/pageSettings'
 
 @Component({
   components: {},
