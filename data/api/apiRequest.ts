@@ -72,7 +72,7 @@ export default class ApiRequest {
   /**
    * 指定したSharedFileデータを取得するAPIURL。
    */
-  public getaSharedFileData(): string {
+  public getPublishedFileDetails(): string {
     return `${this.steamApiBaseUrl}/ISteamRemoteStorage/GetPublishedFileDetails/v1/`
   }
 }

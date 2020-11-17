@@ -28,6 +28,7 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 import DateTimeUtil from '@/utils/dateTimeUtil'
 import MathUtil from '@/utils/mathUtil'
+import { getReviewForAppWatcherItem } from '~/interface/api/getReviewForAppWatcher'
 
 /**
  * レビュワー情報。
@@ -40,7 +41,7 @@ export default class ReviewerInfo extends Vue {
    * レビューデータ。
    */
   @Prop({ default: {} })
-  private data: any
+  private data?: getReviewForAppWatcherItem
 
   /**
    * 概要モード。

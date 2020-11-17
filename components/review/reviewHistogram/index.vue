@@ -17,6 +17,10 @@
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import ChartBar from '@/components/common/chart/ChartBar.vue'
 import { ChartData, ChartOptions } from 'chart.js'
+import {
+  getReviewHistogramData,
+  getReviewHistogramRaw,
+} from '~/interface/api/getReviewHistogram'
 
 /**
  * レビューヒストグラム。
@@ -31,7 +35,7 @@ export default class ReviewHistogram extends Vue {
    * APIデータを格納。
    */
   @Prop({ default: {} })
-  private data: any
+  private data?: getReviewHistogramRaw
 
   /**
    * レビュー計測開始日時。
@@ -43,6 +47,7 @@ export default class ReviewHistogram extends Vue {
   private endDate = ''
 
   mounted() {
+    if (!this.data) return
     // レビュー計測開始日時を取得
     this.startDate = this.convertTimestampToDate(this.data.results.start_date)
     // レビュー計測終了日時を取得
@@ -54,7 +59,7 @@ export default class ReviewHistogram extends Vue {
   /**
    * チャートデータを生成。
    */
-  private generateChartData(data: any) {
+  private generateChartData(data: Array<getReviewHistogramData>) {
     const chartData: ChartData = {
       labels: [],
       datasets: [],
@@ -62,7 +67,7 @@ export default class ReviewHistogram extends Vue {
     const recommendationsUpDataArray: Array<number> = []
     const recommendationsDownDataArray: Array<number> = []
 
-    data.forEach((e: any) => {
+    data.forEach((e: getReviewHistogramData) => {
       chartData.labels?.push(this.convertTimestampToDate(e.date))
       recommendationsUpDataArray.push(e.recommendations_up)
       recommendationsDownDataArray.push(e.recommendations_down)

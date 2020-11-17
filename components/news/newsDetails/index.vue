@@ -54,6 +54,7 @@ import NewsSubDetails from '../newsCard/NewsSubDetails.vue'
 import NewsContents from '../newsCard/NewsContents.vue'
 import NewsTags from '../newsCard/NewsTags.vue'
 import NewsLink from '../newsCard/NewsLink.vue'
+import { getNewsForAppItem } from '~/interface/api/getNewsForApp'
 
 /**
  * ニュース詳細。
@@ -74,6 +75,6 @@ export default class NewsDetails extends Vue {
    * ニュースデータ。
    */
   @Prop({ default: {} })
-  private data: any
+  private data?: getNewsForAppItem
 }
 </script>

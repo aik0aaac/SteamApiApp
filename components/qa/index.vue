@@ -24,12 +24,7 @@
         </v-card-subtitle>
 
         <v-card-text class="mb-4">
-          <v-tabs
-            v-model="tab"
-            background-color="transparent"
-            color="basil"
-            grow
-          >
+          <v-tabs v-model="tab" background-color="transparent" color="basil">
             <!-- QAカテゴリ名 -->
             <v-tab v-for="(category, i) in categoryList" :key="i">
               {{ category.name }}
@@ -39,16 +34,31 @@
           <!-- QA内容 -->
           <v-tabs-items v-model="tab">
             <!-- QA内容: サービス全般 -->
-            <v-tab-item v-for="(data, i) in commonQADataList" :key="i">
-              {{ data }}
+            <v-tab-item>
+              <q-a-contents
+                v-for="(data, i) in commonQADataList"
+                :key="i"
+                :data="data"
+                class="mb-4"
+              />
             </v-tab-item>
             <!-- QA内容: APP Watcher -->
-            <v-tab-item v-for="(data, i) in appWatcherQADataList" :key="i">
-              {{ data }}
+            <v-tab-item>
+              <q-a-contents
+                v-for="(data, i) in appWatcherQADataList"
+                :key="i"
+                :data="data"
+                class="mb-4"
+              />
             </v-tab-item>
             <!-- QA内容: MOD Watcher -->
-            <v-tab-item v-for="(data, i) in modWatcherQADataList" :key="i">
-              {{ data }}
+            <v-tab-item>
+              <q-a-contents
+                v-for="(data, i) in modWatcherQADataList"
+                :key="i"
+                :data="data"
+                class="mb-4"
+              />
             </v-tab-item>
           </v-tabs-items>
         </v-card-text>
@@ -59,7 +69,10 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
+
 import ModalTemplate from '@/components/common/template/ModalTemplate.vue'
+import { IQAContent, IQACategory } from '@/interface/qa'
+import QAContents from './QAContents.vue'
 
 /**
  * Q&A。
@@ -67,6 +80,7 @@ import ModalTemplate from '@/components/common/template/ModalTemplate.vue'
 @Component({
   components: {
     ModalTemplate,
+    QAContents,
   },
 })
 export default class QA extends Vue {
@@ -80,7 +94,7 @@ export default class QA extends Vue {
    */
   private categoryList: Array<IQACategory> = [
     {
-      name: 'サービス全般',
+      name: '全般',
     },
     {
       name: 'APP Watcher',
@@ -95,8 +109,13 @@ export default class QA extends Vue {
    */
   private commonQADataList: Array<IQAContent> = [
     {
-      question: '',
-      answer: '',
+      question:
+        'エラーが発生しましたと出るんだけど<br />ゲーム、modの情報が出てこない',
+      answer: '画面を再読み込みしてください! 大抵はそれで治ります。',
+    },
+    {
+      question: '画面を再読込しても無理…',
+      answer: '問い合わせください…!',
     },
   ]
 
@@ -105,8 +124,9 @@ export default class QA extends Vue {
    */
   private appWatcherQADataList: Array<IQAContent> = [
     {
-      question: '',
-      answer: '',
+      question:
+        '他の端末やブラウザで見ると、データが消えちゃって再登録面倒くさい…',
+      answer: 'インポート機能をご活用ください。',
     },
   ]
 
@@ -119,30 +139,5 @@ export default class QA extends Vue {
       answer: '',
     },
   ]
-}
-
-/**
- * QAカテゴリのインターフェース。
- */
-interface IQACategory {
-  /**
-   * カテゴリ名。
-   */
-  name: string
-}
-
-/**
- * QAデータのインターフェース。
- */
-interface IQAContent {
-  /**
-   * 質問内容。
-   */
-  question: string
-  /**
-   * 回答内容。
-   * HTMLタグも使用可能。
-   */
-  answer: string
 }
 </script>

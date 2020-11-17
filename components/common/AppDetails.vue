@@ -51,7 +51,7 @@ export default class AppDetails extends Vue {
    * アプリIDを格納している対象のVuexModule。
    */
   @Prop({ default: () => ({}) })
-  appIdSetter!: any
+  appIdSetter!: Function
 
   /**
    * アプリID登録or更新ボタンのハンドラー。

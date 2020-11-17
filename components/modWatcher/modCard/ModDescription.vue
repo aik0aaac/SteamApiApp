@@ -12,6 +12,7 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import SteamFormatContents from '@/components/common/steamFormatContents/SteamFormatContents.vue'
 
 import Settings from '@/config/settings'
+import { getPublishedFileDetailsItem } from '~/interface/api/getPublishedFileDetails'
 
 /**
  * MOD説明内容。
@@ -26,7 +27,7 @@ export default class ModDescription extends Vue {
    * MODデータ。
    */
   @Prop({ default: {} })
-  private data: any
+  private data?: getPublishedFileDetailsItem
 
   /**
    * 概要モード。

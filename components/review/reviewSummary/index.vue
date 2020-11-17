@@ -51,6 +51,8 @@ import { appWatcherModule } from '@/store/modules/appWatcherModule'
 import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
 
 import Settings from '~/config/settings'
+import { getReviewHistogram } from '~/interface/api/getReviewHistogram'
+import { getReviewForAppWatcher } from '~/interface/api/getReviewForAppWatcher'
 
 /**
  * レビュー概要。
@@ -67,12 +69,12 @@ export default class ReviewSummary extends Vue {
   /**
    * レビューヒストグラムAPIデータを格納。
    */
-  private reviewHistogramData: any = null
+  private reviewHistogramData: getReviewHistogram | null = null
 
   /**
    * レビューAPIデータを格納。
    */
-  private reviewData: any = null
+  private reviewData: getReviewForAppWatcher | null = null
 
   async fetch() {
     this.reviewHistogramData = await appWatcherModule.getReviewHistogram(

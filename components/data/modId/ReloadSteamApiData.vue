@@ -1,6 +1,6 @@
 <template>
-  <v-btn color="primary reload-button" fab @click="onClickHandler">
-    <v-icon>fas fa-redo-alt</v-icon>
+  <v-btn color="primary reload-button" small fab @click="onClickHandler">
+    <v-icon small>fas fa-redo-alt</v-icon>
   </v-btn>
 </template>
 
@@ -9,7 +9,7 @@ import Vue from 'vue'
 import Component from 'nuxt-class-component'
 
 import { modIdDataModule } from '@/store/modules/dataModule/modIdDataModule'
-import { IModId } from '~/store/modules/dataModule/types'
+import { IModId } from '@/interface/dataModule'
 
 /**
  * API情報を更新するボタン。
@@ -41,7 +41,7 @@ export default class ReloadSteamApiData extends Vue {
 .reload-button {
   position: fixed;
   bottom: 60px;
-  right: 60px;
+  right: 30px;
   z-index: 9999;
 }
 </style>

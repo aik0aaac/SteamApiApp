@@ -18,6 +18,9 @@ export default class RegexpUtil {
    * @param regexp 指定正規表現パターン。
    */
   public static test(str: string, regexp: RegExp): boolean {
+    // 渡された文字列がnullであれば失敗
+    if (!str) return false
+    // 正規表現でマッチ判定
     return regexp.test(str)
   }
 

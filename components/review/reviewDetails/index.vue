@@ -53,6 +53,7 @@ import ReviewSummarySub from '../reviewCard/ReviewSummarySub.vue'
 import ReviewContents from '../reviewCard/ReviewContents.vue'
 import DeveloperResponse from '../reviewCard/DeveloperResponse.vue'
 import ReviewerInfo from '../reviewCard/ReviewerInfo.vue'
+import { getReviewForAppWatcherItem } from '~/interface/api/getReviewForAppWatcher'
 
 /**
  * レビュー詳細。
@@ -74,6 +75,6 @@ export default class ReviewDetails extends Vue {
    * レビューデータ。
    */
   @Prop({ default: {} })
-  private data: any
+  private data?: getReviewForAppWatcherItem
 }
 </script>

@@ -23,6 +23,7 @@ import ApiWrapper from '@/components/common/api/ApiWrapper.vue'
 
 import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
 import { appWatcherModule } from '@/store/modules/appWatcherModule'
+import { getNumberOfCurrentPlayers } from '~/interface/api/getNumberOfCurrentPlayers'
 
 /**
  * 現在プレイ中の人数。
@@ -36,7 +37,7 @@ export default class NowPlayerNum extends Vue {
   /**
    * APIデータを格納。
    */
-  private data: any = null
+  private data: getNumberOfCurrentPlayers | null = null
 
   async fetch() {
     this.data = await appWatcherModule.getNumberOfCurrentPlayers(

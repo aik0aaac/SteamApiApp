@@ -15,7 +15,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
-import { PageSetting } from '~/config/pageSettings/types'
+import { PageSetting } from '@/interface/pageSettings'
 
 @Component
 export default class PageTemplate extends Vue {

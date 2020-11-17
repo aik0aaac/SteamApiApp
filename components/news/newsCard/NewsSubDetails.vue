@@ -10,6 +10,7 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 import DateTimeUtil from '@/utils/dateTimeUtil'
+import { getNewsForAppItem } from '~/interface/api/getNewsForApp'
 
 /**
  * ニュース情報: サブ情報。
@@ -22,7 +23,7 @@ export default class NewsSubDetails extends Vue {
    * ニュースデータ。
    */
   @Prop({ default: {} })
-  private data: any
+  private data?: getNewsForAppItem
 
   /**
    * 指定したTimeStampを日付&時間に変更。

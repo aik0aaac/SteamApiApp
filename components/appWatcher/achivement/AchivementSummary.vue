@@ -22,13 +22,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator'
 import ApiWrapper from '@/components/common/api/ApiWrapper.vue'
 import AchivementList from '@/components/appWatcher/achivement/AchivementList.vue'
 
 import { appWatcherModule } from '@/store/modules/appWatcherModule'
 import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
 import MathUtil from '@/utils/mathUtil'
+import {
+  getGlobalAchievementPercentagesForApp,
+  getGlobalAchievementPercentagesForAppItem,
+} from '~/interface/api/getGlobalAchievementPercentagesForApp'
 
 /**
  * 実績取得比率一覧概要。
@@ -43,7 +47,7 @@ export default class AchivementSummary extends Vue {
   /**
    * APIデータを格納。
    */
-  private data: any = []
+  private data: Array<getGlobalAchievementPercentagesForAppItem> = []
 
   /**
    * 対象アプリのSteamDbへのURL。
@@ -55,22 +59,24 @@ export default class AchivementSummary extends Vue {
   }
 
   async fetch() {
-    const response = await appWatcherModule.getGlobalAchievementPercentagesForApp(
+    const response: getGlobalAchievementPercentagesForApp = await appWatcherModule.getGlobalAchievementPercentagesForApp(
       appIdDataModule.currentAppId.appId
     )
 
     // データが存在=実績データが存在するゲームであすれば格納
-    if (Object.keys(response).length !== 0) {
-      this.data = response.achievementpercentages.achievements
+    if (response) {
+      this.data = response.achievements
 
       // 取得比率のデータを四捨五入しておく
-      this.data = this.data.map((e: any) => {
-        const tmp = {
-          name: e.name,
-          percent: MathUtil.orgRound(e.percent as number, 1000),
+      this.data = this.data.map(
+        (e: getGlobalAchievementPercentagesForAppItem) => {
+          const tmp = {
+            name: e.name,
+            percent: MathUtil.orgRound(e.percent, 1000),
+          }
+          return tmp
         }
-        return tmp
-      })
+      )
     }
   }
 }

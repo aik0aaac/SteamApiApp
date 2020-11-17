@@ -1,7 +1,7 @@
 import { VuexModule, Module, getModule, Mutation } from 'vuex-module-decorators'
 import store from '~/store/store'
 
-import { IModId } from '~/store/modules/dataModule/types'
+import { IModId } from '~/interface/dataModule'
 import ModIdDataLocalStorage from '~/data/localStorage/modIdData'
 
 const modIdDataLocalStorage = new ModIdDataLocalStorage()

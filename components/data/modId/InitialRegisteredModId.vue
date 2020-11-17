@@ -41,7 +41,7 @@ import { modIdDataModule } from '@/store/modules/dataModule/modIdDataModule'
 
 // import ImportAppIdList from '@/components/data/modId/ImportAppIdList.vue'
 
-import { IModId } from '~/store/modules/dataModule/types'
+import { IModId } from '@/interface/dataModule'
 
 import RegexpUtil from '~/utils/regexpUtil'
 

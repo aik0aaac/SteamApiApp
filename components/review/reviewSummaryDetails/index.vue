@@ -10,9 +10,10 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 import ReviewEvaluationSummary from './ReviewEvaluationSummary.vue'
 import ReviewCountSummary from './ReviewCountSummary.vue'
+import { getReviewForAppWatcherSummary } from '~/interface/api/getReviewForAppWatcher'
 
 /**
- * ニュースサマリ概要。
+ * レビューサマリ概要。
  */
 @Component({
   components: {
@@ -22,9 +23,9 @@ import ReviewCountSummary from './ReviewCountSummary.vue'
 })
 export default class ReviewSummaryDetails extends Vue {
   /**
-   * ニュース概要データ。
+   * レビュー概要データ。
    */
   @Prop({ default: {} })
-  private data: any
+  private data?: getReviewForAppWatcherSummary
 }
 </script>

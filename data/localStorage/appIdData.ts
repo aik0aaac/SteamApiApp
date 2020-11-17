@@ -1,7 +1,7 @@
 import RegexpUtil from '@/utils/regexpUtil'
 import BaseLocalStorage from './base'
 
-import { IAppId } from '~/store/modules/dataModule/types'
+import { IAppId } from '~/interface/dataModule'
 
 /**
  * APP IDを管理するClass。

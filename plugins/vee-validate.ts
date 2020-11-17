@@ -4,6 +4,7 @@ import { required } from 'vee-validate/dist/rules'
 
 import RegexpUtil from '@/utils/regexpUtil'
 import Settings from '~/config/settings'
+import { IAppId } from '~/interface/dataModule'
 
 extend('required', { ...required, message: '必須項目です' })
 extend('appIdList', (value: string) => {
@@ -20,7 +21,7 @@ extend('appIdList', (value: string) => {
   }
 
   // JSON形式の値でないならエラー
-  let appIdList = []
+  let appIdList: Array<IAppId> = []
   try {
     appIdList = JSON.parse(value)
   } catch (e) {
@@ -44,7 +45,7 @@ extend('appIdList', (value: string) => {
   }
 
   let isDeepError = false
-  appIdList.forEach((e: any) => {
+  appIdList.forEach((e: IAppId) => {
     // IAppIdのプロパティが含まれていないならエラー
     if (e.label === undefined || e.appId === undefined) {
       console.log(

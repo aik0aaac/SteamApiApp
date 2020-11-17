@@ -17,6 +17,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { getNewsForAppItem } from '~/interface/api/getNewsForApp'
 
 /**
  * ニュース情報: タグ情報。
@@ -29,6 +30,6 @@ export default class NewsTags extends Vue {
    * ニュースデータ。
    */
   @Prop({ default: {} })
-  private data: any
+  private data?: getNewsForAppItem
 }
 </script>

@@ -33,6 +33,7 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 import MathUtil from '@/utils/mathUtil'
+import { getReviewForAppWatcherSummary } from '~/interface/api/getReviewForAppWatcher'
 
 /**
  * ニュースサマリ概要。
@@ -45,12 +46,13 @@ export default class ReviewCountSummary extends Vue {
    * ニュース概要データ。
    */
   @Prop({ default: {} })
-  private data: any
+  private data?: getReviewForAppWatcherSummary
 
   /**
    * 肯定的な評価のパーセンテージ。
    */
   private get positiveReviewPercentage() {
+    if (this.data === undefined) return 0
     return MathUtil.orgRound(
       (this.data.total_positive / this.data.total_reviews) * 100,
       100
@@ -61,6 +63,7 @@ export default class ReviewCountSummary extends Vue {
    * 肯定的な評価のパーセンテージ。
    */
   private get negativeReviewPercentage() {
+    if (this.data === undefined) return 0
     return MathUtil.orgRound(
       (this.data.total_negative / this.data.total_reviews) * 100,
       100
@@ -71,6 +74,7 @@ export default class ReviewCountSummary extends Vue {
    * 肯定的な評価の12分割比率。
    */
   private get positiveReviewRatio() {
+    if (this.data === undefined) return 6
     const totalReviewOneRatio = this.data.total_reviews / 12
     return MathUtil.orgRound(this.data.total_positive / totalReviewOneRatio, 1)
   }

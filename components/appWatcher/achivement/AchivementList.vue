@@ -26,6 +26,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { getGlobalAchievementPercentagesForAppItem } from '~/interface/api/getGlobalAchievementPercentagesForApp'
 
 /**
  * 実績取得比率一覧。
@@ -38,7 +39,7 @@ export default class AchivementList extends Vue {
    * APIデータ。
    */
   @Prop({ default: [] })
-  private data: any
+  private data?: Array<getGlobalAchievementPercentagesForAppItem>
 
   /**
    * DataTableのヘッダー。

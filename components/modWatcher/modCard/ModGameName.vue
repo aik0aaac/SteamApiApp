@@ -17,7 +17,7 @@ export default class ModGameName extends Vue {
   /**
    * ゲーム名。
    */
-  @Prop({ default: {} })
-  private gameName: any
+  @Prop({ default: '' })
+  private gameName?: string
 }
 </script>

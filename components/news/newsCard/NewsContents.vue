@@ -10,8 +10,8 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 import SteamFormatContents from '@/components/common/steamFormatContents/SteamFormatContents.vue'
-
 import Settings from '@/config/settings'
+import { getNewsForAppItem } from '~/interface/api/getNewsForApp'
 
 /**
  * ニュース情報: 内容。
@@ -26,10 +26,10 @@ export default class NewsContents extends Vue {
    * ニュースデータ。
    */
   @Prop({ default: {} })
-  private data: any
+  private data?: getNewsForAppItem
 
   /**
-   * ニュース概要。
+   * ニュース概要モード。
    */
   @Prop({ default: false })
   private summaryMode?: boolean
