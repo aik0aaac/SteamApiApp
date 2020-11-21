@@ -11,7 +11,7 @@
               cols="12"
               sm="6"
             >
-              <mod-card :data="item.apiData" :game-name="item.gameName" />
+              <mod-card :data="item" />
             </v-col>
           </v-row>
         </template>
@@ -29,7 +29,6 @@ import ModCard from '@/components/modWatcher/modCard/index.vue'
 import { modIdDataModule } from '@/store/modules/dataModule/modIdDataModule'
 import { modWatcherModule } from '@/store/modules/modWatcherModule'
 import { IModId } from '@/interface/dataModule'
-import { IModWatcherData } from '@/interface/mod'
 import { getPublishedFileDetailsItem } from '~/interface/api/getPublishedFileDetails'
 
 /**
@@ -52,7 +51,7 @@ export default class ModCardList extends Vue {
   /**
    * APIデータを格納。
    */
-  private data: Array<IModWatcherData> = []
+  private data: Array<getPublishedFileDetailsItem> = []
 
   async fetch() {
     // APIデータを取得
@@ -60,22 +59,20 @@ export default class ModCardList extends Vue {
       modIdDataModule.modIdList
     )
 
-    // APIデータを加工
-    rawResponse.publishedfiledetails.forEach(
-      (e: getPublishedFileDetailsItem) => {
-        // MOD IDデータと実際に取得したAPIデータをマッピング
-        // ※1つ1つのMOD IDに対しリクエストを送るのではなく、まとめて全てのMOD IDに対してリクエストを送付しているのでマッピングする必要がある
-        const modId = modIdDataModule.modIdList.find(
-          (i: IModId) => i.modId === e.publishedfileid
-        )
-        // ゲーム名も一緒にデータとして格納
-        const data: IModWatcherData = {
-          gameName: modId?.gameName as string,
-          apiData: e,
-        }
-        this.data.push(data)
-      }
-    )
+    // APIデータを格納
+    this.data = rawResponse.publishedfiledetails
+
+    // MODデータをVuex上に登録
+    const updateModIdList: Array<IModId> = []
+    this.data.forEach((e: getPublishedFileDetailsItem) => {
+      const tmp: IModId = modIdDataModule.modIdList.filter(
+        (i: IModId) => i.modId === e.publishedfileid
+      )[0]
+      tmp.modName = e.title
+      tmp.modPreviewUrl = e.preview_url
+      updateModIdList.push(tmp)
+    })
+    modIdDataModule.setModIdList(updateModIdList)
   }
 }
 </script>

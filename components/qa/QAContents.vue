@@ -13,10 +13,14 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
+import ImportAppIdList from '@/components/data/appId/ImportAppIdList.vue'
+
 import { IQAContent } from '@/interface/qa'
 
 @Component({
-  components: {},
+  components: {
+    // ImportAppIdList,
+  },
 })
 export default class QAContents extends Vue {
   /**

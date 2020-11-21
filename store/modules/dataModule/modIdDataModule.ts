@@ -76,7 +76,8 @@ class ModIdDataModule extends VuexModule implements IModIdDataState {
     rawModIdList.forEach((e) => {
       const tmp: IModId = {
         modId: e.modId,
-        gameName: e.gameName,
+        modName: e.modName,
+        modPreviewUrl: e.modPreviewUrl,
       }
       modIdList.push(tmp)
     })
@@ -86,28 +87,6 @@ class ModIdDataModule extends VuexModule implements IModIdDataState {
     // LocalStorage上のデータを更新
     modIdDataLocalStorage.setModIdList(modIdList)
   }
-
-  // /**
-  //  * 現在選択中のMOD ID。
-  //  */
-  // get currentModId(): IModId {
-  //   return this._currentModId
-  // }
-
-  // /**
-  //  * MOD IDが登録されているかどうか。
-  //  */
-  // get isRegisteredCurrentModId(): boolean {
-  //   return this._currentModId.modId !== ''
-  // }
-
-  // /**
-  //  * 現在選択中のMOD IDをセット。
-  //  */
-  // @Mutation
-  // public setCurrentModId(data: IModId): void {
-  //   this._currentModId = data
-  // }
 
   /**
    * MOD IDを消去。

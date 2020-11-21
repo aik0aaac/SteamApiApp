@@ -13,7 +13,6 @@ export default class AppIdDataLocalStorage extends BaseLocalStorage {
   public isErrorAppIdLocalStorageData: Array<IAppId> = [
     {
       appId: '',
-      label: '',
     },
   ]
 

@@ -24,7 +24,8 @@ export default class ReloadSteamApiData extends Vue {
     const emptyData: Array<IModId> = [
       {
         modId: '',
-        gameName: '',
+        modName: '',
+        modPreviewUrl: '',
       },
     ]
 

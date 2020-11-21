@@ -78,7 +78,7 @@ export default {
     // analyze: true,
   },
   // vuex-module-decorators setting
-  transpileDependencies: ['vuex-module-decorators'],
+  transpileDependencies: ['vuex-module-decorators', 'vee-validate/dist/rules'],
 
   // serverMiddleware設定
   // serverMiddleware: [{ path: '/api', handler: '~/serverMiddleware/api.js' }],

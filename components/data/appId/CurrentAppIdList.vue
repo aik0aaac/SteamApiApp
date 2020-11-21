@@ -8,7 +8,12 @@
       :outlined="currentAppId.appId !== item.appId"
       @click="setCurrentAppId(item)"
     >
-      {{ item.label }}
+      <v-img
+        contain
+        :src="`https://cdn.cloudflare.steamstatic.com/steam/apps/${item.appId}/header.jpg`"
+        width="100px"
+        height="32px"
+      />
     </v-btn>
   </div>
 </template>

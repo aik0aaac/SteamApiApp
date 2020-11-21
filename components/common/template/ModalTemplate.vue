@@ -21,6 +21,13 @@
       </v-btn>
     </template>
 
+    <!-- 閉じるボタン -->
+    <div class="text-right">
+      <v-btn text @click="dialog = false">
+        <v-icon>fas fa-times</v-icon>
+      </v-btn>
+    </div>
+
     <!-- モーダル内容 -->
     <slot name="main"></slot>
   </v-dialog>

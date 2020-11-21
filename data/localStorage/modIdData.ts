@@ -13,7 +13,8 @@ export default class ModIdDataLocalStorage extends BaseLocalStorage {
   public isErrorModIdLocalStorageData: Array<IModId> = [
     {
       modId: '',
-      gameName: '',
+      modName: '',
+      modPreviewUrl: '',
     },
   ]
 

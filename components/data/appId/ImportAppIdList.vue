@@ -16,24 +16,11 @@
         <v-card-text>
           <validation-observer ref="form" immediate>
             <form>
-              <validation-provider
-                v-slot="{ errors, valid }"
-                name="インポート情報"
+              <text-field
+                v-model="importAppIdList"
                 rules="required|appIdList"
-              >
-                <!-- 入力欄 -->
-                <v-textarea
-                  v-model="importAppIdList"
-                  class="mt-2"
-                  :error-messages="errors"
-                  :success="valid"
-                  label="アプリ情報"
-                  clearable
-                  persistent-hint
-                  required
-                />
-              </validation-provider>
-
+                label="アプリ情報"
+              />
               <!-- 登録ボタン -->
               <v-btn color="primary" block class="mt-2" @click="onclickHandler">
                 登録
@@ -61,15 +48,17 @@ import Component from 'nuxt-class-component'
 import { ValidationProvider } from 'vee-validate'
 
 import ModalTemplate from '@/components/common/template/ModalTemplate.vue'
+import TextField from '@/components/common/formParts/TextField.vue'
 
 import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
 
 /**
- * アプリID情報をエクスポート。
+ * アプリID情報をインポート。
  */
 @Component({
   components: {
     ModalTemplate,
+    TextField,
   },
 })
 export default class ImportAppIdList extends Vue {

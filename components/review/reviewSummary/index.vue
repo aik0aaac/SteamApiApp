@@ -6,9 +6,9 @@
         reviewRecentDays
       }}日間で最も参考になった日本語レビュー最大10件を見れます。<br />
       <!-- TODO: ReviewWatcherへのリンク -->
-      もっと多くのレビュー、日本語以外のレビューを見たい場合は
+      <!-- もっと多くのレビュー、日本語以外のレビューを見たい場合は
       <a href="/" class="text-decoration-none"> こちら </a>
-      からご覧ください。
+      からご覧ください。 -->
     </v-card-subtitle>
 
     <v-card-text>
