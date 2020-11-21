@@ -23,7 +23,6 @@ export default class ReloadSteamApiData extends Vue {
     const tmp = appIdDataModule.currentAppId
     const emptyData: IAppId = {
       appId: '',
-      label: '',
     }
 
     // 短時間でもアプリID画からの状態を作り出し、メインコンポーネントの;key="currentId"を変更検知させる

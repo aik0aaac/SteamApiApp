@@ -126,7 +126,7 @@ export default class QA extends Vue {
     {
       question:
         '他の端末やブラウザで見ると、データが消えちゃって再登録面倒くさい…',
-      answer: 'インポート機能をご活用ください。',
+      answer: 'インポート機能をご活用ください。<import-app-id-list />',
     },
   ]
 

@@ -81,7 +81,6 @@ class AppIdDataModule extends VuexModule implements IAppIdDataState {
     rawAppIdList.forEach((e) => {
       const tmp: IAppId = {
         appId: e.appId,
-        label: e.label,
       }
       appIdList.push(tmp)
     })

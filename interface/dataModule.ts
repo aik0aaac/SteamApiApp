@@ -3,10 +3,6 @@ export interface IAppId {
    * アプリID。
    */
   appId: string
-  /**
-   * アプリIDの表示名。
-   */
-  label: string
 }
 
 export interface IModId {
@@ -15,7 +11,15 @@ export interface IModId {
    */
   modId: string
   /**
-   * ゲーム名。
+   * MOD名。
+   * APIから取得したデータが格納される。
+   * APIでのデータ未取得状態だとから文字が入る。
    */
-  gameName: string
+  modName: string
+  /**
+   * MOD画像。
+   * APIから取得したデータが格納される。
+   * APIでのデータ未取得状態だとから文字が入る。
+   */
+  modPreviewUrl: string
 }

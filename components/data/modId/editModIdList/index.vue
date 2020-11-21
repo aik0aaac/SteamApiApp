@@ -21,18 +21,7 @@
           </v-alert>
 
           <!-- MOD IDの追加欄 -->
-          <add-mod-id-list />
-
-          <v-row>
-            <!-- TODO: エクスポート欄 -->
-            <v-col cols="12" sm="6">
-              <!-- <export-app-id-list /> -->
-            </v-col>
-            <!-- TODO: インポート欄 -->
-            <v-col cols="12" sm="6">
-              <!-- <import-app-id-list /> -->
-            </v-col>
-          </v-row>
+          <add-mod-id />
         </v-card-text>
       </v-card>
     </template>
@@ -45,16 +34,16 @@ import Component from 'nuxt-class-component'
 
 import ModalTemplate from '@/components/common/template/ModalTemplate.vue'
 import ModIdList from './ModIdList.vue'
-import AddModIdList from './AddModIdList.vue'
+import AddModId from './AddModId.vue'
 
 /**
- * 登録中のアプリIDを変更。
+ * 登録中のMOD IDを変更。
  */
 @Component({
   components: {
     ModalTemplate,
     ModIdList,
-    AddModIdList,
+    AddModId,
   },
 })
 export default class EditModIdList extends Vue {}

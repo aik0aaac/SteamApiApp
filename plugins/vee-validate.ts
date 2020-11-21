@@ -47,7 +47,7 @@ extend('appIdList', (value: string) => {
   let isDeepError = false
   appIdList.forEach((e: IAppId) => {
     // IAppIdのプロパティが含まれていないならエラー
-    if (e.label === undefined || e.appId === undefined) {
+    if (e.appId === undefined) {
       console.log(
         'SteamWatcherの書式対応外の値が入力されました!' +
         Settings.izimeraretaMessage
@@ -68,6 +68,22 @@ extend('appIdList', (value: string) => {
     return errorMessages
   }
   return true
+})
+
+// SteamストアURL
+extend('steamAppStoreUrl', {
+  validate: (value) => {
+    return RegexpUtil.steamUrlToAppId.test(value)
+  },
+  message: 'お気に入りSteamゲームのURLを入力してください',
+})
+
+// SteamMOD URL
+extend('steamModUrl', {
+  validate: (value) => {
+    return RegexpUtil.steamUrlToModId.test(value)
+  },
+  message: 'お気に入りSteam MODのURLを入力してください',
 })
 
 Vue.component('ValidationObserver', ValidationObserver)

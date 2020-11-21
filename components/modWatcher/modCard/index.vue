@@ -1,6 +1,5 @@
 <template>
   <v-card outlined class="mb-8">
-    <mod-game-name :game-name="gameName" />
     <v-img :src="data.preview_url"> </v-img>
 
     <v-card-title>
@@ -23,7 +22,7 @@
       <v-row>
         <!-- 詳細ボタン -->
         <v-col cols="12" class="pt-0 pb-2">
-          <mod-details :game-name="gameName" :data="data" />
+          <mod-details :data="data" />
         </v-col>
         <!--Steamリンク -->
         <v-col cols="12" class="py-0">
@@ -50,7 +49,6 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 import ModDetails from '../modDetails/index.vue'
-import ModGameName from './ModGameName.vue'
 import ModDate from './ModDate.vue'
 import ModDescription from './ModDescription.vue'
 import ModExternalReactions from './ModExternalReactions.vue'
@@ -64,7 +62,6 @@ import { getPublishedFileDetailsItem } from '~/interface/api/getPublishedFileDet
  */
 @Component({
   components: {
-    ModGameName,
     ModDate,
     ModDescription,
     ModExternalReactions,
@@ -80,11 +77,5 @@ export default class ModCard extends Vue {
    */
   @Prop({ default: {} })
   private data?: getPublishedFileDetailsItem
-
-  /**
-   * ゲーム名。
-   */
-  @Prop({ default: '' })
-  private gameName?: string
 }
 </script>

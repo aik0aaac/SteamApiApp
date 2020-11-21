@@ -7,32 +7,20 @@
     <template #main>
       <v-card>
         <v-card-title class="headline"> 登録中のアプリを変更 </v-card-title>
-
         <v-card-text>
           <!-- 登録済みのアプリIDリスト -->
           <app-id-list />
 
+          <!-- アプリIDの追加欄 -->
+          <add-app-id />
+
           <!-- 注意文言 -->
-          <v-alert outlined type="warning" class="body-2">
+          <v-alert outlined type="warning" class="body-2 mt-6">
             アプリの情報は
             <span class="font-weight-bold">ブラウザ内</span>
             に保持されます。<br />
             別端末や別ブラウザから閲覧すると登録しなおしになるのでご注意を。
           </v-alert>
-
-          <!-- アプリIDの追加欄 -->
-          <add-app-id-list />
-
-          <v-row>
-            <!-- エクスポート欄 -->
-            <v-col cols="12" sm="6">
-              <export-app-id-list />
-            </v-col>
-            <!-- インポート欄 -->
-            <v-col cols="12" sm="6">
-              <import-app-id-list />
-            </v-col>
-          </v-row>
         </v-card-text>
       </v-card>
     </template>
@@ -47,7 +35,7 @@ import ModalTemplate from '@/components/common/template/ModalTemplate.vue'
 import ExportAppIdList from '@/components/data/appId/ExportAppIdList.vue'
 import ImportAppIdList from '@/components/data/appId/ImportAppIdList.vue'
 import AppIdList from './AppIdList.vue'
-import AddAppIdList from './AddAppIdList.vue'
+import AddAppId from './AddAppId.vue'
 
 /**
  * 登録中のアプリIDを変更。
@@ -56,7 +44,7 @@ import AddAppIdList from './AddAppIdList.vue'
   components: {
     ModalTemplate,
     AppIdList,
-    AddAppIdList,
+    AddAppId,
     ExportAppIdList,
     ImportAppIdList,
   },

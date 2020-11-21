@@ -4,16 +4,18 @@
     <v-card-subtitle class="caption">
       最新のニュースリリースを見れます。<br />
       <!-- TODO: NewsWatcherへのリンク -->
-      もっと多くのニュースリリースを見たい場合は
+      <!-- もっと多くのニュースリリースを見たい場合は
       <a href="/" class="text-decoration-none"> こちら </a>
-      からご覧ください。
+      からご覧ください。 -->
     </v-card-subtitle>
 
     <v-card-text>
       <api-wrapper :fetch-state="$fetchState">
         <!-- ニュース一覧 -->
         <template #data>
-          <div class="title mb-2">全{{ newsCount }}件中5件表示</div>
+          <div class="title mb-2">
+            全{{ newsCount }}件中{{ data.length }}件表示
+          </div>
           <v-row>
             <v-col
               v-for="(item, $index) in data"
