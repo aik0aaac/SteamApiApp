@@ -9,12 +9,16 @@
           :to="item.link"
           router
           exact
+          data-cy="default-sideBarItem"
         >
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
+            <v-list-item-title
+              data-cy="default-sideBarItemTitle"
+              v-text="item.title"
+            />
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -23,7 +27,10 @@
     <!-- 上部メニューバー -->
     <v-app-bar fixed app>
       <!-- サイドメニュー展開ボタン -->
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon
+        data-cy="default-openSideMenuButton"
+        @click.stop="drawer = !drawer"
+      />
       <!-- アプリタイトル -->
       <v-toolbar-title v-text="title" />
 

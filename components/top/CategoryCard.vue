@@ -1,6 +1,6 @@
 <template>
-  <v-card outlined>
-    <v-card-title>
+  <v-card outlined data-cy="categoryCard-cardArea">
+    <v-card-title data-cy="categoryCard-name">
       {{ data.name }}
       <span v-if="data.isNotAvaliable" class="ml-4 body-2">
         <v-icon small class="mr-1">fas fa-rocket</v-icon>Comming Soon!
@@ -13,7 +13,13 @@
       </div>
     </v-card-text>
     <v-card-actions class="pb-6 px-6">
-      <v-btn v-if="!data.isNotAvaliable" block color="primary" :to="data.link">
+      <v-btn
+        v-if="!data.isNotAvaliable"
+        block
+        color="primary"
+        :to="data.link"
+        data-cy="categoryCard-link"
+      >
         <v-icon x-small class="mr-2">fas fa-grin-squint</v-icon>
         見てみる!
       </v-btn>

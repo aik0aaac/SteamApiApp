@@ -18,3 +18,7 @@ $ yarn start
 # generate static project
 $ yarn generate
 ```
+
+# 自動テストについて
+本リポジトリではE2Eテストツール「[cypress](https://www.cypress.io/)」を採用しています。
+`yarn cypress:open`と実行することでテストツールが起動できます。

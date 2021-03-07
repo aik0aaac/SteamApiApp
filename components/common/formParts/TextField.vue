@@ -7,6 +7,7 @@
       :hint="hint"
       persistent-hint
       :error-messages="errors"
+      :data-cy="dataCy"
     />
   </validation-provider>
 </template>
@@ -61,5 +62,11 @@ export default class TextField extends Vue {
    */
   @Prop({ default: '' })
   rules!: string
+
+  /**
+   * cypressセレクタ指定用文字列
+   */
+  @Prop({ default: 'textField' })
+  dataCy!: string
 }
 </script>
