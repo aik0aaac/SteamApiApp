@@ -1,6 +1,6 @@
 <template>
   <v-btn color="primary reload-button" small fab @click="onClickHandler">
-    <v-icon small>fas fa-redo-alt</v-icon>
+    <font-awesome-icon size="lg" icon="redo" />
   </v-btn>
 </template>
 

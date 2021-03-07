@@ -47,6 +47,8 @@ export default class ReviewEvaluationSummary extends Vue {
     // eslint-disable-next-line camelcase
     switch (this.data?.review_score_desc) {
       case 'Very Positive':
+        return '圧倒的に好評'
+      case 'Mostly Positive':
         return '非常に好評'
       default:
         // eslint-disable-next-line camelcase

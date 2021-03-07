@@ -36,4 +36,14 @@ export default class Settings {
    * MOD概要欄にて画面に表示させる文字数。
    */
   public static modSummaryDisplayContentsNum = 200
+
+  /**
+   * 「質問箱」へのGoogleフォームURL。
+   */
+  public static questionForm = 'https://forms.gle/xppufQtGZtiSNcow5'
+
+  /**
+   * 「ご意見、ご感想箱」へのGoogleフォームURL。
+   */
+  public static ideaForm = 'https://forms.gle/C83D9vBuMTsNrgAK9'
 }

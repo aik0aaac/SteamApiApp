@@ -1,12 +1,16 @@
 <template>
-  <div>
-    <app-id-item
+  <v-row>
+    <v-col
       v-for="(item, i) in appIdList"
       :key="i"
-      :data="item"
-      class="mb-2"
-    />
-  </div>
+      cols="12"
+      sm="6"
+      md="4"
+      class="pt-0"
+    >
+      <app-id-item :data="item" />
+    </v-col>
+  </v-row>
 </template>
 
 <script lang="ts">

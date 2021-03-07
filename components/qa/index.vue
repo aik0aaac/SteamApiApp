@@ -1,6 +1,6 @@
 <template>
   <modal-template
-    open-button-icon="fas fa-question-circle"
+    open-button-icon="fas fa-exclamation-circle"
     open-button-color="primary"
     :open-button-iconed="true"
   >
@@ -14,10 +14,7 @@
           </p>
           <p>
             もしQ&Aにないことでお困りの場合、
-            <a
-              href="https://forms.gle/xppufQtGZtiSNcow5"
-              target="_blank"
-              class="text-decoration-none"
+            <a :href="questionForm" target="_blank" class="text-decoration-none"
               >こちら</a
             >のGoogleフォームから質問もできます。
           </p>
@@ -73,6 +70,7 @@ import { Vue, Component } from 'vue-property-decorator'
 import ModalTemplate from '@/components/common/template/ModalTemplate.vue'
 import { IQAContent, IQACategory } from '@/interface/qa'
 import QAContents from './QAContents.vue'
+import Settings from '~/config/settings'
 
 /**
  * Q&A。
@@ -105,29 +103,42 @@ export default class QA extends Vue {
   ]
 
   /**
+   * 「質問箱」へのGoogleフォームURL。
+   */
+  private questionForm = Settings.questionForm
+
+  /**
    * QAデータ: サービス全般。
    */
   private commonQADataList: Array<IQAContent> = [
     {
-      question:
-        'エラーが発生しましたと出るんだけど<br />ゲーム、modの情報が出てこない',
+      question: `エラーが発生しましたと出るんだけど
+ゲーム、modの情報が出てこない`,
       answer: '画面を再読み込みしてください! 大抵はそれで治ります。',
     },
     {
       question: '画面を再読込しても無理…',
-      answer: '問い合わせください…!',
+      answer: `<a href="${this.questionForm}" target="_blank" class="text-decoration-none">こちら</a>の質問箱より投稿をお願いします。
+使用端末、ブラウザ、「どんな操作を行なってエラーとなったか」を詳細に記入ください.
+例: 「iPhoneSE(第2世代)、iOS 14.0.1のChromeブラウザにてAPP Watcherにアクセスし〇〇のゲームを登録したらエラーとなりました。」
+※個人で開発しているサービスであるため、返信はとても遅いです…気長に待っていただければ。
+　どうしても急いでいる場合は<a href="https://twitter.com/aik0aaat" target="_blank" class="text-decoration-none">Twitter(aik0aaat)</a>のDMにてご連絡ください。`,
     },
+    // {
+    //   question: '他端末orブラウザで見ると登録していた情報が消える',
+    //   answer: '',
+    // },
   ]
 
   /**
    * QAデータ: APP Watcher。
    */
   private appWatcherQADataList: Array<IQAContent> = [
-    {
-      question:
-        '他の端末やブラウザで見ると、データが消えちゃって再登録面倒くさい…',
-      answer: 'インポート機能をご活用ください。<import-app-id-list />',
-    },
+    // {
+    //   question:
+    //     '他の端末やブラウザで見ると、データが消えちゃって再登録面倒くさい…',
+    //   answer: `インポート機能をご活用ください。`,
+    // },
   ]
 
   /**

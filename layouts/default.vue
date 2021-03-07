@@ -29,7 +29,9 @@
 
       <v-spacer></v-spacer>
 
-      <!-- Q&Aコーナー -->
+      <!-- ヘルプ -->
+      <help />
+      <!-- Q&A -->
       <q-a />
     </v-app-bar>
 
@@ -50,6 +52,7 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 
+import Help from '@/components/help/index.vue'
 import QA from '@/components/qa/index.vue'
 import FooterContents from '@/components/common/FooterContents.vue'
 
@@ -58,6 +61,7 @@ import { pageSettings } from '~/config/pageSettings'
 
 @Component({
   components: {
+    Help,
     QA,
     FooterContents,
   },

@@ -45,12 +45,13 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'nuxt-class-component'
-import { ValidationProvider } from 'vee-validate'
 
 import ModalTemplate from '@/components/common/template/ModalTemplate.vue'
 import TextField from '@/components/common/formParts/TextField.vue'
 
 import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
+import { Ref } from 'vue-property-decorator'
+import { ValidationObserver } from 'vee-validate'
 
 /**
  * アプリID情報をインポート。
@@ -62,9 +63,7 @@ import { appIdDataModule } from '@/store/modules/dataModule/appIdDataModule'
   },
 })
 export default class ImportAppIdList extends Vue {
-  $refs!: {
-    form: InstanceType<typeof ValidationProvider>
-  }
+  @Ref() form!: InstanceType<typeof ValidationObserver>
 
   /**
    * 入力されるアプリ情報。
@@ -76,11 +75,12 @@ export default class ImportAppIdList extends Vue {
    */
   private async onclickHandler() {
     // エラー状態であれば何もしない
-    const result = await this.$refs.form.validate()
+    const result = await this.form.validate()
     if (!result) {
       return
     }
 
+    // データをセット
     appIdDataModule.setAppIdList(JSON.parse(this.importAppIdList))
   }
 }

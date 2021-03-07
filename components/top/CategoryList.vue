@@ -12,7 +12,6 @@ import { Vue, Component } from 'vue-property-decorator'
 import { ICategory } from '@/interface/pageSettings'
 import CategoryCard from '~/components/top/CategoryCard.vue'
 
-// settings import
 import { pageSettings } from '~/config/pageSettings'
 
 /**

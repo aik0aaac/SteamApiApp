@@ -1,4 +1,5 @@
-import colors from 'vuetify/es5/util/colors'
+// import webpack from 'webpack'
+// import MomentLocalesPlugin from 'moment-locales-webpack-plugin'
 
 export default {
   // LocalStorageを正常動作させるため、SPAモードで運用
@@ -21,6 +22,7 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     { src: 'plugins/vuetify', ssr: false },
+    { src: 'plugins/fontawesome', ssr: false },
     { src: 'plugins/vue-clipboard2', ssr: false },
     { src: 'plugins/vee-validate', ssr: false },
   ],
@@ -42,7 +44,15 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    // fontawesome
+    // 'nuxt-fontawesome',
   ],
+  /*
+   ** FontAwesome
+   */
+  // fontawesome: {
+  //   component: 'fa',
+  // },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
@@ -54,33 +64,38 @@ export default {
       dark: true,
       themes: {
         dark: {
-          primary: '#3261AB',
-          accent: colors.grey.darken3,
+          primary: '#4381e6',
+          accent: '#424242',
           secondary: '#3D93B6',
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
+          info: '#26A69A',
+          warning: '#FFC107',
           error: '#e84a5f',
           success: '#16a596',
         },
       },
     },
+    treeShake: true,
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    transpile: ['vuetify'],
     babel: {
       plugins: [
-        ['@babel/plugin-proposal-decorators', { legacy: true }],
-        ['@babel/plugin-proposal-class-properties', { loose: true }],
+        // moment.jsを読み込まない様にする
+        // Or: To strip all locales except “en”, “es-us” and “ru”
+        // (“en” is built into Moment and can’t be removed)
+        // new MomentLocalesPlugin({
+        //   localesToKeep: ['ja'],
+        // }),
+        // new webpack.IgnorePlugin(/\.\/locale$/),
+        // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
       ],
     },
-    // analyze: true,
+    transpile: ['vuetify'],
   },
   // vuex-module-decorators setting
   transpileDependencies: ['vuex-module-decorators', 'vee-validate/dist/rules'],
 
   // serverMiddleware設定
-  // serverMiddleware: [{ path: '/api', handler: '~/serverMiddleware/api.js' }],
   serverMiddleware: ['~/api'],
 }
